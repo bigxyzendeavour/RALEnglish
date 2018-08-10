@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, UITableViewDelegate, UITableViewDataSource {
+class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, UITableViewDelegate, UITableViewDataSource, DFPlayerDelegate, DFPlayerDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var playButton: UIButton!
@@ -18,6 +18,7 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, UITableViewDeleg
     @IBOutlet weak var endTimeLabel: UILabel!
     
     var selectedContent: Content!
+    var selectedPlayerModel: DFPlayerModel!
     var currentContentID: Int! //Index
     var contentList: [Content]!
     var player = AVAudioPlayer()
@@ -28,6 +29,7 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, UITableViewDeleg
     var timer: Timer!
     var currentIndex: IndexPath!
     var dfplayer = DFPlayer()
+    var playerModels = [DFPlayerModel]()
     
     //Test subtitles
     var contentSubs = "Once a princess found a ring in her garden,^which gave five stunning powers to her,^which only she can enjoy.^The five powers were:to sleep effortlessly,^to make fire without flint,^to make rain shower without clouds in the sky,^to grow a crop she wanted,^and to sing like an enchanted siren.^One day, a witch cast a spell all through the kingdom.^The witch took away to sleep, fire, rain, crops,^and songs from everyone in the kingdom.^All this made the princess cry for the helpless people.^She ran out to her balcony and kept singing for months together.^She sang about good and evil,^rain and fire, and so on.^She has sung for a year.^One day the princess slowly disintegrated into the wind,^and the kingdom came back to its original state.^She was never seen again but was just heard.^Every year, good people of her kingdom held a celebration for her!^"
@@ -38,9 +40,11 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, UITableViewDeleg
         tableView.delegate = self
         tableView.dataSource = self
         
+        convertToSubtitle(content: contentSubs)
+        
         initialize()
         
-        convertToSubtitle(content: contentSubs)
+       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -51,8 +55,6 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, UITableViewDeleg
         self.title = selectedContent.title
         UserDefaults.standard.set(0, forKey: "playerProgressSliderValue")
         prepareAudio()
-        
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -84,6 +86,10 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, UITableViewDeleg
         subtitles = content.components(separatedBy: "^")
     }
     
+    func df_playerModelArray() -> [DFPlayerModel]! {
+        return playerModels
+    }
+    
     func prepareAudio() {
         player = try! AVAudioPlayer(data: self.selectedContent.contentData, fileTypeHint: "m4a")
         player.delegate = self
@@ -93,10 +99,19 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, UITableViewDeleg
         progressSlider.value = 0.0
         showTotalSongLength()
         retrievePlayerProgressSliderValue()
+        
+        
+        dfplayer.category = DFPlayerAudioSessionCategory.playback
+        dfplayer.isObserveWWAN = true
+        dfplayer.df_reloadData()
+        dfplayer.delegate = self
+        dfplayer.dataSource = self
+        DFPlayer.shareInstance().df_playerPlay(withAudioId: selectedPlayerModel.audioId)
     }
     
     func playStory() {
         player.play()
+//        DFPlayer.shareInstance().df_playerPlay(withAudioId: )
         startTimer()
         scrollUp()
 //        do {

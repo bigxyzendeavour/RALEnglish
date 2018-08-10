@@ -6,11 +6,8 @@ target 'RALEnglish' do
   use_frameworks!
 
   # Pods for RALEnglish
-  pod 'Firebase/Core'
-  pod 'Firebase/Storage'
-  pod 'Firebase/Database'
-  pod 'Firebase/Auth'
   pod 'NVActivityIndicatorView'
   pod 'DFPlayer'
+  pod 'Firebase'
 
 end

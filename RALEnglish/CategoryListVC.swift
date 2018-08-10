@@ -18,6 +18,8 @@ class CategoryListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     var contentList = [Content]()
     var selectedContent: Content!
     var selectedContentID: Int!
+    var playerModels = [DFPlayerModel]()
+    var selectedPlayerModel: DFPlayerModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,13 @@ class CategoryListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     let data = snap.value as! Dictionary<String, Any>
                     let content = Content(contentID: contentID, contentData: data)
                     self.contentList.append(content)
+                }
+                for i in 0..<self.contentList.count {
+                    let content = self.contentList[i]
+                    let playerModel = DFPlayerModel()
+                    playerModel.audioId = UInt(i)
+                    playerModel.audioUrl = URL(string: content.contentURL)!
+                    self.playerModels.append(playerModel)
                 }
                 self.tableView.reloadData()
                 self.endRefrenshing()
@@ -62,6 +71,7 @@ class CategoryListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedContent = contentList[indexPath.row]
         selectedContentID = indexPath.row
+        selectedPlayerModel = playerModels[indexPath.row]
         performSegue(withIdentifier: "ContentPlayerVC", sender: nil)
     }
     
@@ -70,6 +80,8 @@ class CategoryListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             destination.selectedContent = selectedContent
             destination.contentList = contentList
             destination.currentContentID = selectedContentID
+            destination.playerModels = playerModels
+            destination.selectedPlayerModel = selectedPlayerModel
         }
     }
     

@@ -23,7 +23,6 @@
 		C1A5DE9321193DA000A73FD4 /* MainCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5DE9221193DA000A73FD4 /* MainCategoryCell.swift */; };
 		C1A5DE9521193DB600A73FD4 /* CategoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5DE9421193DB600A73FD4 /* CategoryListCell.swift */; };
 		C1A5DE972119BB6100A73FD4 /* SubtitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5DE962119BB6100A73FD4 /* SubtitleCell.swift */; };
-		C1F7BD04211CA8B600BE35AE /* ObjCBridgingHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E0862A211C9F5B00DE4DA2 /* ObjCBridgingHeader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,8 +47,6 @@
 		C1A5DE9421193DB600A73FD4 /* CategoryListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryListCell.swift; sourceTree = "<group>"; };
 		C1A5DE962119BB6100A73FD4 /* SubtitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtitleCell.swift; sourceTree = "<group>"; };
 		C1E08629211C9F5A00DE4DA2 /* RALEnglish-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "RALEnglish-Bridging-Header.h"; path = "RALEnglish/RALEnglish-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		C1E0862A211C9F5B00DE4DA2 /* ObjCBridgingHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ObjCBridgingHeader.m; path = RALEnglish/ObjCBridgingHeader.m; sourceTree = SOURCE_ROOT; };
-		C1E0862C211CA21F00DE4DA2 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +89,6 @@
 				C1A5DE842119392800A73FD4 /* Controller */,
 				C1A5DE6B211935D100A73FD4 /* AppDelegate.swift */,
 				C1A5DE6F211935D100A73FD4 /* Main.storyboard */,
-				C1E0862A211C9F5B00DE4DA2 /* ObjCBridgingHeader.m */,
 				C1E08629211C9F5A00DE4DA2 /* RALEnglish-Bridging-Header.h */,
 				C1A5DE72211935D100A73FD4 /* Assets.xcassets */,
 				C1A5DE74211935D100A73FD4 /* LaunchScreen.storyboard */,
@@ -117,7 +113,6 @@
 				C1A5DE6D211935D100A73FD4 /* MainVC.swift */,
 				C1A5DE8E21193B3B00A73FD4 /* CategoryListVC.swift */,
 				C1A5DE9021193B5200A73FD4 /* ContentPlayerVC.swift */,
-				C1E0862C211CA21F00DE4DA2 /* BridgingHeader.h */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -291,7 +286,6 @@
 				C1A5DE8F21193B3B00A73FD4 /* CategoryListVC.swift in Sources */,
 				C1A5DE972119BB6100A73FD4 /* SubtitleCell.swift in Sources */,
 				C1A5DE9321193DA000A73FD4 /* MainCategoryCell.swift in Sources */,
-				C1F7BD04211CA8B600BE35AE /* ObjCBridgingHeader.m in Sources */,
 				C1A5DE6E211935D100A73FD4 /* MainVC.swift in Sources */,
 				C1A5DE8D2119398100A73FD4 /* Content.swift in Sources */,
 				C1A5DE6C211935D100A73FD4 /* AppDelegate.swift in Sources */,
