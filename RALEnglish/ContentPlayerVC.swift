@@ -158,12 +158,12 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate
         
         dfplayerControlManager = DFPlayerControlManager.shareInstance()
         dfplayerControlManager.df_bufferProgressView(withFrame: progressSlider.frame, trackTintColor: .green, progressTintColor: .red, superView: self.view!)
-        dfplayerControlManager.df_slider(withFrame: progressSlider.frame, minimumTrackTintColor: .cyan, maximumTrackTintColor: .brown, trackHeight: 30, thumbSize: CGSize(width: 34, height: 34), superView: self.view)
-        dfplayerControlManager.df_currentTimeLabel(withFrame: startTimeLabel.frame, superView: startTimeLabel)
+        dfplayerControlManager.df_slider(withFrame: progressSlider.frame, minimumTrackTintColor: .cyan, maximumTrackTintColor: .brown, trackHeight: 15, thumbSize: CGSize(width: 26, height: 26), superView: self.view)
+        dfplayerControlManager.df_currentTimeLabel(withFrame: startTimeLabel.frame, superView: self.view)
         dfplayerControlManager.df_totalTimeLabel(withFrame: endTimeLabel.frame, superView: endTimeLabel)
         
-        dfplayerControlManager.df_playPauseBtn(withFrame: CGRect(x: playButton.frame.origin.x, y: playButton.frame.origin.y, width: playButton.frame.width, height: playButton.frame.height), superView: self.view, block: nil)
-        dfplayerControlManager.df_nextAudioBtn(withFrame: nextButton.frame, superView: nextButton.imageView!, block: nil)
+        dfplayerControlManager.df_playPauseBtn(withFrame: CGRect(x: playButton.frame.origin.x, y: playButton.frame.origin.y, width: playButton.frame.width, height: playButton.frame.height), superView: playButton, block: nil)
+        dfplayerControlManager.df_nextAudioBtn(withFrame: nextButton.frame, superView: nextButton, block: nil)
         dfplayerControlManager.df_lastAudioBtn(withFrame: previousButton.frame, superView: previousButton.imageView!, block: nil)
         
         dfplayer.df_setPlayerWithPreviousAudioModel()
