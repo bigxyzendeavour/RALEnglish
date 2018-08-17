@@ -23,6 +23,7 @@
 		C1A5DE9321193DA000A73FD4 /* MainCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5DE9221193DA000A73FD4 /* MainCategoryCell.swift */; };
 		C1A5DE9521193DB600A73FD4 /* CategoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5DE9421193DB600A73FD4 /* CategoryListCell.swift */; };
 		C1A5DE972119BB6100A73FD4 /* SubtitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5DE962119BB6100A73FD4 /* SubtitleCell.swift */; };
+		C1F7BD08211FC91A00BE35AE /* lyric.lrc in Resources */ = {isa = PBXBuildFile; fileRef = C1F7BD07211FC91A00BE35AE /* lyric.lrc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		C1A5DE9421193DB600A73FD4 /* CategoryListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryListCell.swift; sourceTree = "<group>"; };
 		C1A5DE962119BB6100A73FD4 /* SubtitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtitleCell.swift; sourceTree = "<group>"; };
 		C1E08629211C9F5A00DE4DA2 /* RALEnglish-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "RALEnglish-Bridging-Header.h"; path = "RALEnglish/RALEnglish-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		C1F7BD07211FC91A00BE35AE /* lyric.lrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = lyric.lrc; path = ../lyric.lrc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				C1E08629211C9F5A00DE4DA2 /* RALEnglish-Bridging-Header.h */,
 				C1A5DE72211935D100A73FD4 /* Assets.xcassets */,
 				C1A5DE74211935D100A73FD4 /* LaunchScreen.storyboard */,
+				C1F7BD07211FC91A00BE35AE /* lyric.lrc */,
 				C1A5DE77211935D100A73FD4 /* Info.plist */,
 				C1A5DE7F2119364A00A73FD4 /* GoogleService-Info.plist */,
 			);
@@ -219,6 +222,7 @@
 			files = (
 				C1A5DE76211935D100A73FD4 /* LaunchScreen.storyboard in Resources */,
 				C1A5DE802119364A00A73FD4 /* GoogleService-Info.plist in Resources */,
+				C1F7BD08211FC91A00BE35AE /* lyric.lrc in Resources */,
 				C1A5DE73211935D100A73FD4 /* Assets.xcassets in Resources */,
 				C1A5DE71211935D100A73FD4 /* Main.storyboard in Resources */,
 			);
@@ -412,6 +416,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = UM5SX26C6N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/NVActivityIndicatorView\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/leveldb-library\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseAuth/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseDatabase/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseStorage/Frameworks\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/DFPlayer\"",
+				);
 				INFOPLIST_FILE = RALEnglish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -421,6 +440,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/\"/**";
+				WARNING_CFLAGS = "";
 			};
 			name = Debug;
 		};
@@ -431,6 +451,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = UM5SX26C6N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/NVActivityIndicatorView\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/leveldb-library\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseAuth/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseDatabase/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseStorage/Frameworks\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/DFPlayer\"",
+				);
 				INFOPLIST_FILE = RALEnglish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -439,6 +474,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "RALEnglish/RALEnglish-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/\"/**";
+				WARNING_CFLAGS = "";
 			};
 			name = Release;
 		};

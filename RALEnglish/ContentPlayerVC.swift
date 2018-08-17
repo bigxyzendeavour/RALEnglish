@@ -1,4 +1,4 @@
-//
+
 //  ContentPlayerVC.swift
 //  EnglishCollection
 //
@@ -9,10 +9,13 @@
 import UIKit
 import AVFoundation
 
-class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, UITableViewDelegate, UITableViewDataSource, DFPlayerDelegate, DFPlayerDataSource {
-    
-    @IBOutlet weak var tableView: UITableView!
+class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate, DFPlayerDataSource {
+
+    @IBOutlet weak var containerView: UIScrollView!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var progressSlider: UISlider!
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var endTimeLabel: UILabel!
@@ -28,8 +31,11 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, UITableViewDeleg
     var audioLength = 0.0
     var timer: Timer!
     var currentIndex: IndexPath!
-    var dfplayer = DFPlayer()
-    var playerModels = [DFPlayerModel]()
+    var dfplayer: DFPlayer!
+    var playerModels: [DFPlayerModel]!
+    var dfplayerControlManager: DFPlayerControlManager!
+    var selectedPlayerInfoModel: DFPlayerInfoModel!
+    var lyricTableView: UITableView!
     
     //Test subtitles
     var contentSubs = "Once a princess found a ring in her garden,^which gave five stunning powers to her,^which only she can enjoy.^The five powers were:to sleep effortlessly,^to make fire without flint,^to make rain shower without clouds in the sky,^to grow a crop she wanted,^and to sing like an enchanted siren.^One day, a witch cast a spell all through the kingdom.^The witch took away to sleep, fire, rain, crops,^and songs from everyone in the kingdom.^All this made the princess cry for the helpless people.^She ran out to her balcony and kept singing for months together.^She sang about good and evil,^rain and fire, and so on.^She has sung for a year.^One day the princess slowly disintegrated into the wind,^and the kingdom came back to its original state.^She was never seen again but was just heard.^Every year, good people of her kingdom held a celebration for her!^"
@@ -37,8 +43,8 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
+//        tableView.delegate = self
+//        tableView.dataSource = self
         
         convertToSubtitle(content: contentSubs)
         
@@ -49,34 +55,37 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, UITableViewDeleg
     
     override func viewWillDisappear(_ animated: Bool) {
         UserDefaults.standard.set(0, forKey: "playerProgressSliderValue")
+        dfplayerControlManager?.df_playerLyricTableviewStopUpdate()
     }
     
     func initialize() {
         self.title = selectedContent.title
         UserDefaults.standard.set(0, forKey: "playerProgressSliderValue")
-        prepareAudio()
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return subtitles.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let subtitle = subtitles[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SubtitleCell") as! SubtitleCell
-        cell.configureCell(subtitle: subtitle)
-        if currentIndex != nil {
-            if indexPath.row == 0 {
-                cell.isSelected = true
-            }
-        }
         
-        return cell
+        initPlayer()
+        initializeUI()
     }
+    
+    func initializeUI() {
+        lyricTableView = dfplayerControlManager?.df_lyricTableView(withFrame: containerView.frame, contentInset: UIEdgeInsetsMake(0, 0, 0, 0), cellRowHeight: 70, cellBackgroundColor: UIColor.clear, currentLineLrcForegroundTextColor: UIColor.purple, currentLineLrcBackgroundTextColor: .white, otherLineLrcBackgroundTextColor: .black, currentLineLrcFont: UIFont.init(name: "Chalkboard SE", size: 12)!, otherLineLrcFont: UIFont(name: "Chalkboard SE", size: 12)!, superView: containerView, click: {(IndexPath) -> Void in
+        })
+        containerView.addSubview(lyricTableView!)
+    }
+    
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
+//    
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return subtitles.count
+//    }
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let subtitle = subtitles[indexPath.row]
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "SubtitleCell") as! SubtitleCell
+//        cell.configureCell(subtitle: subtitle)
+//        return cell
+//    }
     
     func indexPathForPreferredFocusedView(in tableView: UITableView) -> IndexPath? {
         return tableView.indexPathForSelectedRow
@@ -86,34 +95,107 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, UITableViewDeleg
         subtitles = content.components(separatedBy: "^")
     }
     
+    func df_player(_ player: DFPlayer!, bufferProgress: CGFloat, totalTime: CGFloat) {
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:player.currentAudioModel.audioId
+//            inSection:0];
+//        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+//        cell.detailTextLabel.text = [NSString stringWithFormat:@"正在缓冲%lf",bufferProgress];
+//        cell.detailTextLabel.hidden = NO;
+    }
+    
+    func df_player(_ player: DFPlayer!, progress: CGFloat, currentTime: CGFloat, totalTime: CGFloat) {
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:player.currentAudioModel.audioId
+//            inSection:0];
+//        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+//        cell.detailTextLabel.text = [NSString stringWithFormat:@"当前进度%lf--当前时间%.0f--总时长%.0f",progress,currentTime,totalTime];
+//        cell.detailTextLabel.hidden = NO;
+    }
+    
     func df_playerModelArray() -> [DFPlayerModel]! {
+//        if !contentList.isEmpty || contentList != nil {
+//            playerModels.removeAll()
+//            for i in 0..<contentList.count {
+//                let content = self.contentList[i]
+//                let playerModel = DFPlayerModel()
+//                playerModel.audioId = UInt(i)
+//                playerModel.audioUrl = URL(string: content.contentURL)!
+//                playerModels.append(playerModel)
+//            }
+//        }
         return playerModels
     }
     
-    func prepareAudio() {
-        player = try! AVAudioPlayer(data: self.selectedContent.contentData, fileTypeHint: "m4a")
-        player.delegate = self
-        audioLength = player.duration
-        progressSlider.maximumValue = CFloat(player.duration)
-        progressSlider.minimumValue = 0.0
-        progressSlider.value = 0.0
-        showTotalSongLength()
-        retrievePlayerProgressSliderValue()
+    func df_playerAudioInfoModel(_ player: DFPlayer!) -> DFPlayerInfoModel! {
+        let infoModel = DFPlayerInfoModel()
+        do {
+            infoModel.audioLyric = try String(contentsOfFile: Bundle.main.path(forResource: "lyric", ofType: "lrc")!, encoding: String.Encoding.utf8)
+            print(infoModel.audioLyric!)
+        } catch let err as NSError {
+            print(err)
+        }
+//        infoModel.audioLyric = selectedContent.lyric
         
-        
-        dfplayer.category = DFPlayerAudioSessionCategory.playback
-        dfplayer.isObserveWWAN = true
-        dfplayer.df_reloadData()
+//        //歌词
+//        NSString *lyricPath     = [[NSBundle mainBundle] pathForResource:yourModel.yourLyric ofType:nil];
+//        infoModel.audioLyric    = [NSString stringWithContentsOfFile:lyricPath encoding:NSUTF8StringEncoding error:nil];
+
+        return infoModel;
+    }
+    
+    func df_playerAudioWillAdd(toPlayQueue player: DFPlayer!) {
+        lyricTableView.reloadData()
+    }
+    
+    func initPlayer() {
+        dfplayer = DFPlayer.shareInstance()
+        dfplayer.df_initPlayer(withUserId: nil)
         dfplayer.delegate = self
         dfplayer.dataSource = self
-        DFPlayer.shareInstance().df_playerPlay(withAudioId: selectedPlayerModel.audioId)
+        dfplayer.category = DFPlayerAudioSessionCategory.playback
+        dfplayer.isObserveWWAN = true
+        
+        dfplayer.df_reloadData()
+        
+        dfplayerControlManager = DFPlayerControlManager.shareInstance()
+        dfplayerControlManager.df_bufferProgressView(withFrame: progressSlider.frame, trackTintColor: .green, progressTintColor: .red, superView: self.view!)
+        dfplayerControlManager.df_slider(withFrame: progressSlider.frame, minimumTrackTintColor: .cyan, maximumTrackTintColor: .brown, trackHeight: 30, thumbSize: CGSize(width: 34, height: 34), superView: self.view)
+        dfplayerControlManager.df_currentTimeLabel(withFrame: startTimeLabel.frame, superView: startTimeLabel)
+        dfplayerControlManager.df_totalTimeLabel(withFrame: endTimeLabel.frame, superView: endTimeLabel)
+        
+        dfplayerControlManager.df_playPauseBtn(withFrame: CGRect(x: playButton.frame.origin.x, y: playButton.frame.origin.y, width: playButton.frame.width, height: playButton.frame.height), superView: self.view, block: nil)
+        dfplayerControlManager.df_nextAudioBtn(withFrame: nextButton.frame, superView: nextButton.imageView!, block: nil)
+        dfplayerControlManager.df_lastAudioBtn(withFrame: previousButton.frame, superView: previousButton.imageView!, block: nil)
+        
+        dfplayer.df_setPlayerWithPreviousAudioModel()
+    }
+    
+    func prepareAudio() {
+//        player = try! AVAudioPlayer(data: self.selectedContent.contentData, fileTypeHint: "m4a")
+//        player.delegate = self
+//        audioLength = player.duration
+//        progressSlider.maximumValue = CFloat(player.duration)
+//        progressSlider.minimumValue = 0.0
+//        progressSlider.value = 0.0
+//        showTotalSongLength()
+//        retrievePlayerProgressSliderValue()
+        
+        
+//        selectedPlayerModel = DFPlayerModel()
+//        selectedPlayerModel.audioId = UInt(currentContentID)
+//        selectedPlayerModel.audioUrl = URL(string: selectedContent.contentURL)!
+
+//        DFPlayer.shareInstance().df_setPlayerWithPreviousAudioModel()
+        dfplayer.df_reloadData()
     }
     
     func playStory() {
-        player.play()
-//        DFPlayer.shareInstance().df_playerPlay(withAudioId: )
-        startTimer()
-        scrollUp()
+//        player.play()
+//        dfplayer.df_audioPlay()
+        prepareAudio()
+        let model = playerModels[currentContentID]
+        dfplayer.df_playerPlay(withAudioId: model.audioId)
+//        startTimer()
+//        scrollUp()
 //        do {
 //            player.play()
 //        } catch let err as NSError {
@@ -190,46 +272,50 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, UITableViewDeleg
     }
     
     
-    func scrollUp() {
-        let index = indexPathForPreferredFocusedView(in: tableView)
-        
-        self.delay(2){
-            self.tableView.scrollToRow(at: index!, at: .top, animated: true)
-            return self.scrollUp()
-        }
-    }
+//    func scrollUp() {
+//        let index = indexPathForPreferredFocusedView(in: tableView)
+//        
+//        self.delay(2){
+//            self.tableView.scrollToRow(at: index!, at: .top, animated: true)
+//            return self.scrollUp()
+//        }
+//    }
     
     @IBAction func playBtnPressed(_ sender: UIButton) {
-        if player.isPlaying == true {
-            playButton.setImage(UIImage(named: "Play"), for: .normal)
-            player.pause()
-        } else {
-            playButton.setImage(UIImage(named: "Pause"), for: .normal)
-            if isInMiddle {
-                playStory()
-            } else {
-                prepareAudio()
-                playStory()
-                isInMiddle = true
-            }
-//            var i = 0
-//            let indexPath = IndexPath(row: i, section: 0)
-//            repeat {
-//                Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { (timer) in
-//                    self.tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
-//                    i += 1
-//                })
-//            } while i < subtitles.count
-            
-        }
+//        if player.isPlaying == true {
+//            playButton.setImage(UIImage(named: "Play"), for: .normal)
+//            player.pause()
+//        } else {
+//            playButton.setImage(UIImage(named: "Pause"), for: .normal)
+//            if isInMiddle {
+//                playStory()
+//            } else {
+//                prepareAudio()
+//                playStory()
+//                isInMiddle = true
+//            }
+////            var i = 0
+////            let indexPath = IndexPath(row: i, section: 0)
+////            repeat {
+////                Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { (timer) in
+////                    self.tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+////                    i += 1
+////                })
+////            } while i < subtitles.count
+//            
+//        }
+//        dfplayer.df_playerPlay(withAudioId: UInt(currentContentID))
+        playStory()
     }
     
     @IBAction func stopBtnPressed(_ sender: UIButton) {
-        isInMiddle = false
-        playButton.setImage(UIImage(named: "Play"), for: .normal)
-        UserDefaults.standard.set(0, forKey: "playerProgressSliderValue")
-        retrievePlayerProgressSliderValue()
-        player.stop()
+//        isInMiddle = false
+//        playButton.setImage(UIImage(named: "Play"), for: .normal)
+//        UserDefaults.standard.set(0, forKey: "playerProgressSliderValue")
+//        retrievePlayerProgressSliderValue()
+//        player.stop()
+        dfplayerControlManager?.df_playerLyricTableviewStopUpdate()
+        
     }
     
     @IBAction func backwordBtnPressed(_ sender: UIButton) {

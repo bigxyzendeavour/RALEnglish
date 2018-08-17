@@ -12,7 +12,7 @@ import AVFoundation
 
 class Content {
     
-    private var _contentID: String!
+    private var _contentID: Int!
     private var _title: String!
     private var _description: String!
     private var _contentURL: String!
@@ -22,7 +22,7 @@ class Content {
         
     }
     
-    init(contentID: String, contentData: Dictionary<String, Any>) {
+    init(contentID: Int, contentData: Dictionary<String, Any>) {
         self._contentID = contentID
         if let contentTitle = contentData["Title"] as? String {
             self._title = contentTitle
@@ -43,11 +43,8 @@ class Content {
         }
     }
     
-    var contentID: String {
+    var contentID: Int {
         get {
-            if _contentID == nil {
-                _contentID = ""
-            }
             return _contentID
         }
         set {
