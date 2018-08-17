@@ -103,7 +103,7 @@ NSString * const DFPlaybackLikelyToKeepUpKey    = @"playbackLikelyToKeepUp";
     self.isOthetPlaying = [AVAudioSession sharedInstance].otherAudioPlaying;
     
     NSInteger user_playerMode = [[NSUserDefaults standardUserDefaults] integerForKey:DFPlayerModeKey];
-    self.playMode = user_playerMode?user_playerMode:DFPlayerModeSingleCycle;
+    self.playMode = user_playerMode?user_playerMode:DFPlayerModeOnlyOnce;
     self.state = DFPlayerStateStopped;
     self.isObserveProgress          = YES;
     self.isObserveBufferProgress    = YES;
@@ -218,7 +218,7 @@ NSString * const DFPlaybackLikelyToKeepUpKey    = @"playbackLikelyToKeepUp";
 
 -(void)df_playerDidPlayToEndTime:(NSNotification *)notification{
     self.isNaturalToEndTime = YES;
-    [self df_audioNext];
+    [self df_audioStop];
     if (self.delegate && [self.delegate respondsToSelector:@selector(df_playerDidPlayToEndTime:)]) {
         [self.delegate df_playerDidPlayToEndTime:self];
     }
@@ -398,8 +398,25 @@ NSString * const DFPlaybackLikelyToKeepUpKey    = @"playbackLikelyToKeepUp";
         [self audioPrePlayToLoadAudio];
     }
 }
+
+
+/**停止后预播放*/
+- (void)audioPrePlayAfterStopped {
+    //移除进度观察者
+    if (self.timeObserver) {
+        [self.player removeTimeObserver:self.timeObserver];
+        self.timeObserver = nil;
+    }
+    //重置进度和时间
+    self.progress = self.bufferProgress = self.currentTime = self.totalTime = .0f;
+    self.isSeekWaiting  = NO;
+    self.isSettingPreviousAudioModel = NO;
+    
+    [self audioPrePlayToResetAudio];
+}
+
 /**预播放*/
-- (void)audioPrePlay{
+- (void)audioPrePlay {
     //移除进度观察者
     if (self.timeObserver) {
         [self.player removeTimeObserver:self.timeObserver];
@@ -745,7 +762,11 @@ NSString * const DFPlaybackLikelyToKeepUpKey    = @"playbackLikelyToKeepUp";
 #pragma mark - 播放 暂停 下一首 上一首
 /**播放*/
 -(void)df_audioPlay{
-    if (!self.isPlaying) {
+    if (self.state == DFPlayerStateStopped) {
+        self.isPlaying = YES;
+        self.state = DFPlayerStatePlaying;
+        [self audioPrePlayToLoadAudio];
+    } else if (!self.isPlaying) {
         self.isPlaying = YES;
         self.state = DFPlayerStatePlaying;
     }
@@ -759,6 +780,13 @@ NSString * const DFPlaybackLikelyToKeepUpKey    = @"playbackLikelyToKeepUp";
         self.state = DFPlayerStatePause;
     }
     [self.player pause];
+}
+
+-(void)df_audioStop{
+    self.isPlaying = NO;
+    self.state = DFPlayerStateStopped;
+    [self.player pause];
+    [self audioPrePlayAfterStopped];
 }
 
 /**下一首*/

@@ -196,26 +196,27 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vHK-2T-00g">
                                         <rect key="frame" x="0.0" y="8" width="375" height="64"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wu1-8S-Ggv">
-                                                <rect key="frame" x="0.0" y="0.0" width="69" height="64"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53T-ye-oSC">
+                                                <rect key="frame" x="0.0" y="0.0" width="68" height="64"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sbs-8H-ZzV">
-                                                <rect key="frame" x="79" y="0.0" width="103.5" height="64"/>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l7F-9E-eLu">
+                                                <rect key="frame" x="78" y="0.0" width="104.5" height="64"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dJ-Vv-IWf">
-                                                <rect key="frame" x="192.5" y="0.0" width="103.5" height="64"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1Z-ky-C9C">
+                                                <rect key="frame" x="192.5" y="0.0" width="104.5" height="64"/>
+                                                <state key="normal" image="Stop"/>
+                                                <connections>
+                                                    <action selector="stopBtnPressed:" destination="GtV-CM-9M3" eventType="touchUpInside" id="POR-ew-x7n"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spt-aV-ELk">
-                                                <rect key="frame" x="306" y="0.0" width="69" height="64"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lG2-WU-S4k">
+                                                <rect key="frame" x="307" y="0.0" width="68" height="64"/>
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="spt-aV-ELk" firstAttribute="width" secondItem="Wu1-8S-Ggv" secondAttribute="width" id="NYA-7Z-ROb"/>
-                                            <constraint firstItem="Sbs-8H-ZzV" firstAttribute="width" secondItem="Wu1-8S-Ggv" secondAttribute="width" multiplier="1.5" id="ZRU-ka-wCj"/>
-                                            <constraint firstItem="4dJ-Vv-IWf" firstAttribute="width" secondItem="Sbs-8H-ZzV" secondAttribute="width" id="yDj-hV-E8P"/>
+                                            <constraint firstItem="J1Z-ky-C9C" firstAttribute="width" secondItem="l7F-9E-eLu" secondAttribute="width" id="Q0a-Th-Aiw"/>
+                                            <constraint firstItem="lG2-WU-S4k" firstAttribute="width" secondItem="53T-ye-oSC" secondAttribute="width" id="dvz-Yt-rM2"/>
+                                            <constraint firstItem="53T-ye-oSC" firstAttribute="width" secondItem="l7F-9E-eLu" secondAttribute="width" multiplier="0.65" id="l7U-6p-gnS"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -250,29 +251,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="EVX-87-Wcj">
-                                <rect key="frame" x="14" y="516" width="347" height="31"/>
-                                <color key="minimumTrackTintColor" red="1" green="0.087684347410000002" blue="0.097083155729999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="sliderTimeChanged:" destination="GtV-CM-9M3" eventType="valueChanged" id="IgP-ID-gDi"/>
-                                </connections>
-                            </slider>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j74-jg-Cek">
                                 <rect key="frame" x="0.0" y="64" width="375" height="444"/>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Awp-yl-g7h">
+                                <rect key="frame" x="16" y="516" width="343" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="l69-ls-rw5"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.97326365110000002" green="1" blue="0.95879143290000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="ubU-Rd-tx6" firstAttribute="top" secondItem="Rn1-30-GRZ" secondAttribute="bottom" constant="8" id="3UK-Il-ndH"/>
-                            <constraint firstAttribute="trailing" secondItem="EVX-87-Wcj" secondAttribute="trailing" constant="16" id="5OV-tb-pPD"/>
-                            <constraint firstItem="EVX-87-Wcj" firstAttribute="leading" secondItem="pXy-Nz-7Ts" secondAttribute="leading" constant="16" id="6LS-8k-qht"/>
+                            <constraint firstItem="Awp-yl-g7h" firstAttribute="leading" secondItem="pXy-Nz-7Ts" secondAttribute="leading" constant="16" id="DuU-9f-4UZ"/>
+                            <constraint firstItem="KQG-Xz-Lfc" firstAttribute="top" secondItem="Awp-yl-g7h" secondAttribute="bottom" constant="8" id="Iym-rv-Q3T"/>
                             <constraint firstItem="YL2-vs-L9w" firstAttribute="top" secondItem="ubU-Rd-tx6" secondAttribute="bottom" id="Mju-jd-86w"/>
                             <constraint firstAttribute="trailing" secondItem="ubU-Rd-tx6" secondAttribute="trailing" id="Nrx-SF-3tv"/>
                             <constraint firstItem="ubU-Rd-tx6" firstAttribute="top" secondItem="KQG-Xz-Lfc" secondAttribute="bottom" constant="8" id="Ny8-z9-EWZ"/>
                             <constraint firstAttribute="trailing" secondItem="j74-jg-Cek" secondAttribute="trailing" id="QCW-gh-Puk"/>
+                            <constraint firstAttribute="trailing" secondItem="Awp-yl-g7h" secondAttribute="trailing" constant="16" id="WGi-0W-K4M"/>
                             <constraint firstItem="j74-jg-Cek" firstAttribute="top" secondItem="ova-sI-klZ" secondAttribute="bottom" id="ZxN-C1-5D1"/>
-                            <constraint firstItem="EVX-87-Wcj" firstAttribute="top" secondItem="j74-jg-Cek" secondAttribute="bottom" constant="8" id="da4-FO-q6k"/>
-                            <constraint firstItem="KQG-Xz-Lfc" firstAttribute="top" secondItem="EVX-87-Wcj" secondAttribute="bottom" constant="8" id="fPY-8c-rak"/>
+                            <constraint firstItem="Awp-yl-g7h" firstAttribute="top" secondItem="j74-jg-Cek" secondAttribute="bottom" constant="8" id="dgV-Qs-if2"/>
                             <constraint firstItem="Rn1-30-GRZ" firstAttribute="leading" secondItem="pXy-Nz-7Ts" secondAttribute="leading" constant="8" id="hMn-E7-YIB"/>
                             <constraint firstItem="j74-jg-Cek" firstAttribute="leading" secondItem="pXy-Nz-7Ts" secondAttribute="leading" id="ix5-IT-gUJ"/>
                             <constraint firstItem="ubU-Rd-tx6" firstAttribute="leading" secondItem="pXy-Nz-7Ts" secondAttribute="leading" id="ueD-Kf-on8"/>
@@ -280,12 +281,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomStackView" destination="vHK-2T-00g" id="fCJ-v6-ueW"/>
                         <outlet property="containerView" destination="j74-jg-Cek" id="Gm5-t9-thY"/>
                         <outlet property="endTimeLabel" destination="KQG-Xz-Lfc" id="Ddf-31-FzS"/>
-                        <outlet property="nextButton" destination="spt-aV-ELk" id="EDo-r0-rcZ"/>
-                        <outlet property="playButton" destination="Sbs-8H-ZzV" id="0re-C2-Aaa"/>
-                        <outlet property="previousButton" destination="Wu1-8S-Ggv" id="DM1-2O-xWd"/>
-                        <outlet property="progressSlider" destination="EVX-87-Wcj" id="tYM-qc-WeH"/>
+                        <outlet property="nextButton" destination="lG2-WU-S4k" id="L5s-Vd-YeL"/>
+                        <outlet property="playButton" destination="l7F-9E-eLu" id="1fn-jB-rdX"/>
+                        <outlet property="previousButton" destination="53T-ye-oSC" id="yid-RX-It3"/>
+                        <outlet property="sliderView" destination="Awp-yl-g7h" id="Sv1-B5-oSe"/>
                         <outlet property="startTimeLabel" destination="Rn1-30-GRZ" id="kfR-W0-GGP"/>
                     </connections>
                 </viewController>
@@ -312,4 +314,7 @@
             <point key="canvasLocation" x="-87" y="36"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Stop" width="48" height="48"/>
+    </resources>
 </document>

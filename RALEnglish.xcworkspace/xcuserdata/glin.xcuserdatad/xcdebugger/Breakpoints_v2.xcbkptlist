@@ -9,92 +9,60 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RALEnglish/ContentPlayerVC.swift"
-            timestampString = "556113490.366461"
+            filePath = "Pods/DFPlayer/DFPlayer/DFPlayer.m"
+            timestampString = "556217347.432762"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "df_playerAudioInfoModel(_:)"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
+            landmarkName = "-df_setPlayerWithPreviousAudioModel"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RALEnglish/ContentPlayerVC.swift"
-            timestampString = "556144307.240101"
+            filePath = "Pods/DFPlayer/DFPlayer/DFPlayerControlManager.m"
+            timestampString = "556230325.727107"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
-            landmarkName = "playBtnPressed(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/DFPlayer/DFPlayer/supplement/DFPlayerLyricsTableview.m"
-            timestampString = "555907707.916417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "519"
-            endingLineNumber = "519"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/DFPlayer/DFPlayer/supplement/DFPlayerLyricsTableview.m"
-            timestampString = "555909705.121507"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "410"
-            endingLineNumber = "410"
-            landmarkName = "-lyricAnalyze:"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "-df_playPauseBtnWithFrame:superView:block:"
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[DFPlayerLyricsTableview lyricAnalyze:]"
+                  symbolName = "-[DFPlayerControlManager df_playPauseBtnWithFrame:superView:block:]"
                   moduleName = "DFPlayer"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/glin/Documents/Mobile_App_Development/IOS/RALEnglish/Pods/DFPlayer/DFPlayer/supplement/DFPlayerLyricsTableview.m"
-                  timestampString = "556111703.270044"
+                  urlString = "file:///Users/glin/Documents/Mobile_App_Development/IOS/RALEnglish/Pods/DFPlayer/DFPlayer/DFPlayerControlManager.m"
+                  timestampString = "556216730.464951"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "410"
-                  endingLineNumber = "410"
-                  offsetFromSymbolStart = "47">
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
+                  offsetFromSymbolStart = "1494">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__40-[DFPlayerLyricsTableview lyricAnalyze:]_block_invoke"
+                  symbolName = "__67-[DFPlayerControlManager df_playPauseBtnWithFrame:superView:block:]_block_invoke"
                   moduleName = "DFPlayer"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/glin/Documents/Mobile_App_Development/IOS/RALEnglish/Pods/DFPlayer/DFPlayer/supplement/DFPlayerLyricsTableview.m"
-                  timestampString = "556111703.27282"
+                  urlString = "file:///Users/glin/Documents/Mobile_App_Development/IOS/RALEnglish/Pods/DFPlayer/DFPlayer/DFPlayerControlManager.m"
+                  timestampString = "556216730.468174"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "410"
-                  endingLineNumber = "410"
-                  offsetFromSymbolStart = "39">
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "44">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -105,13 +73,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RALEnglish/ContentPlayerVC.swift"
-            timestampString = "556113490.366461"
+            filePath = "Pods/DFPlayer/DFPlayer/DFPlayerControlManager.m"
+            timestampString = "556231403.673493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "df_playerModelArray()"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "-df_playPauseBtnWithFrame:superView:block:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RALEnglish/ContentPlayerVC.swift"
+            timestampString = "556231468.074461"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "playStory()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RALEnglish/ContentPlayerVC.swift"
+            timestampString = "556231476.432904"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "initPlayer()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/DFPlayer/DFPlayer/DFPlayer.m"
-            timestampString = "555959088.879041"
+            timestampString = "556231621.570469"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "369"
@@ -137,13 +137,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Pods/DFPlayer/DFPlayer/supplement/DFPlayerLyricsTableview.m"
-            timestampString = "555959521.8477089"
+            filePath = "Pods/DFPlayer/DFPlayer/DFPlayer.m"
+            timestampString = "556231803.418064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
-            landmarkName = "-observeValueForKeyPath:ofObject:change:context:"
+            startingLineNumber = "481"
+            endingLineNumber = "481"
+            landmarkName = "-loadPlayerItemWithUrl:cacheFilePath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -154,92 +154,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/DFPlayer/DFPlayer/DFPlayer.m"
-            timestampString = "555972587.014361"
+            timestampString = "556232160.900021"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "439"
-            endingLineNumber = "439"
+            startingLineNumber = "456"
+            endingLineNumber = "456"
             landmarkName = "-audioPrePlayToLoadAudio"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/DFPlayer/DFPlayer/DFPlayer.m"
-            timestampString = "555974948.535067"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "418"
-            endingLineNumber = "418"
-            landmarkName = "-audioPrePlayToResetAudio"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/DFPlayer/DFPlayer/DFPlayer.m"
-            timestampString = "555991240.7656699"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "343"
-            endingLineNumber = "343"
-            landmarkName = "-df_reloadData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/DFPlayer/DFPlayer/supplement/DFPlayerLyricsTableview.m"
-            timestampString = "555997647.6520669"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "386"
-            endingLineNumber = "386"
-            landmarkName = "-df_lyricAnalyze"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/DFPlayer/DFPlayer/supplement/DFPlayerLyricsTableview.m"
-            timestampString = "556060925.890956"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
-            landmarkName = "-observeValueForKeyPath:ofObject:change:context:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/DFPlayer/DFPlayer/DFPlayer.m"
-            timestampString = "556112065.498816"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "404"
-            endingLineNumber = "404"
-            landmarkName = "-audioPrePlay"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

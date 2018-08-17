@@ -267,6 +267,8 @@ typedef NS_ENUM(NSUInteger, DFPlayerStatusCode) {
 /**上一首*/
 - (void)df_audioLast;
 
+- (void)df_audioStop;
+
 /**
  设置历史播放信息
  （在合适的时机，调用该方法，将会在本地记录音频URL、当前播放到的时间、音频总时长、播放进度，以供下次继续播放）

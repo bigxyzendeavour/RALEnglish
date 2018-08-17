@@ -154,20 +154,26 @@ NSString * const DFTotalTimeKey      = @"totalTime";
     }
     [[DFPlayer shareInstance] addObserver:self forKeyPath:DFStateKey options:NSKeyValueObservingOptionNew context:nil];
     self.playBtn.handleJFEventBlock = ^(UIButton *sender) {
-        if ([DFPlayer shareInstance].currentAudioModel.audioUrl) {
-            if ([DFPlayer shareInstance].state == DFPlayerStatePlaying) {
-                [[DFPlayer shareInstance] df_audioPause];
+        if ([DFPlayer shareInstance].state == DFPlayerStateStopped) {
+            [DFPlayer shareInstance].df_audioPlay;
+        } else {
+            if ([DFPlayer shareInstance].currentAudioModel.audioUrl) {
+                if ([DFPlayer shareInstance].state == DFPlayerStatePlaying) {
+                    [[DFPlayer shareInstance] df_audioPause];
+                }else{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:DFPlayerCurrentAudioInfoModelPlayNotiKey object:nil];
+                    [[DFPlayer shareInstance] df_audioPlay];
+                }
+                
             }else{
-                [[NSNotificationCenter defaultCenter] postNotificationName:DFPlayerCurrentAudioInfoModelPlayNotiKey object:nil];
-                [[DFPlayer shareInstance] df_audioPlay];
+                NSLog(@"-- DFPlayer： 没有可播放的音频");
             }
-         
-        }else{
-            NSLog(@"-- DFPlayer： 没有可播放的音频");
+            if (block) {
+                block();
+            }
         }
-        if (block) {
-            block();
-        }
+        
+        
     };
     return self.playBtn;
 }
@@ -548,6 +554,10 @@ NSString * const DFTotalTimeKey      = @"totalTime";
         }
     };
     return self.lyricsTableView;
+}
+
+- (void)df_playerReset{
+    [self setUpCurrentTimeLabelTextWithCurrentTime:0];
 }
 
 /**停止更新lyricTableview中歌词的刷新*/
