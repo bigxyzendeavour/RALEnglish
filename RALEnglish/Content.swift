@@ -17,6 +17,7 @@ class Content {
     private var _description: String!
     private var _contentURL: String!
     private var _contentData: Data!
+    private var _lyric: String!
     
     init() {
         
@@ -39,7 +40,10 @@ class Content {
             } catch let err as NSError {
                 print(err)
             }
-            
+        }
+        
+        if let contentLyric = contentData["Lyric"] as? String {
+            self._lyric = contentLyric
         }
     }
     
@@ -97,6 +101,18 @@ class Content {
         }
         set {
             _contentData = newValue
+        }
+    }
+    
+    var lyric: String {
+        get {
+            if _lyric == nil {
+                _lyric = ""
+            }
+            return _lyric
+        }
+        set {
+            _lyric = newValue
         }
     }
 }

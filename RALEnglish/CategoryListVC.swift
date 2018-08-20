@@ -28,39 +28,11 @@ class CategoryListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         
-//        let url1 = "https://www.dropbox.com/s/hdj1es6o9uphfr2/Penguin%20Misses%20Mom.m4a?dl=1"
-//        let url2 = "https://www.dropbox.com/s/urizf5mw1h1nwmd/Sheila%20The%20Sheep%202.m4a?dl=1"
-//        let url3 = "https://www.dropbox.com/s/60l38qzn23xl19w/My%20potty%202.m4a?dl=1"
-//        let url4 = "https://www.dropbox.com/s/we0kl08i10lbrit/Flowing%20water.MP3?dl=1"
-//        urls = [url1, url2, url3, url4]
-        
-//        testData()
         downloadCateogyList()
     }
-    
-//    func testData() {
-//        for i in 0..<4 {
-//            let content = Content()
-//            content.contentID = i
-//            content.description = "\(i + i)"
-//            content.title = "\(i + i + 1)"
-//            contentList.append(content)
-//            let model = DFPlayerModel()
-//            model.audioId = UInt(NSInteger(i))
-//            model.audioUrl = NSURL(string: urls[i]) as! URL
-//            self.playerModels.append(model)
-//        }
-//        self.tableView.reloadData()
-//    }
-    
+
     func downloadCateogyList() {
         startRefreshing()
-        Timer.scheduledTimer(withTimeInterval: 30, repeats: false, block: { (timer) in
-            if isRefreshing == true {
-                self.endRefrenshing()
-                self.sendAlertWithoutHandler(alertTitle: "Network connection issue", alertMessage: "Please scroll up to refresh", actionTitle: ["OK"])
-            }
-        })
         DispatchQueue.main.async {
             DataService.ds.REF_BASE.child(self.selectedCategory).observeSingleEvent(of: .value, with: { (snapshot) in
                 if let snapShot = snapshot.children.allObjects as? [DataSnapshot] {

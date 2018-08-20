@@ -18,6 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        var splashView = UIImageView(frame: CGRect(x: 0, y: 0, width: (window?.screen.bounds.width)!, height: (window?.screen.bounds.height)!))
+        splashView.image = UIImage(named: "Splash")
+        
+        splashView = UIImageView(frame: CGRect(x: 0, y: 0, width: (window?.screen.bounds.width)!, height: (window?.screen.bounds.height)!))
+        splashView.image = UIImage()
+        window?.addSubview(splashView)
+        window?.bringSubview(toFront: splashView)
+        
+        UIView.animate(withDuration: 0.5, animations: {splashView.alpha = 0}) { (true) in
+            splashView.removeFromSuperview()
+        }
         return true
     }
 

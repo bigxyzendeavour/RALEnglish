@@ -58,8 +58,7 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        UserDefaults.standard.set(0, forKey: "playerProgressSliderValue")
-        dfplayerControlManager?.df_playerLyricTableviewStopUpdate()
+        dfplayer.df_audioPause()
     }
     
     func initialize() {
@@ -72,8 +71,9 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate
     }
     
     func initializeUI() {
-        lyricTableView = dfplayerControlManager?.df_lyricTableView(withFrame: containerView.frame, contentInset: UIEdgeInsetsMake(0, 0, 0, 0), cellRowHeight: 60, cellBackgroundColor: UIColor.clear, currentLineLrcForegroundTextColor: UIColor.purple, currentLineLrcBackgroundTextColor: .black, otherLineLrcBackgroundTextColor: .black, currentLineLrcFont: UIFont.init(name: "Chalkboard SE", size: 15)!, otherLineLrcFont: UIFont(name: "Chalkboard SE", size: 15)!, superView: containerView, click: {(IndexPath) -> Void in
+        lyricTableView = dfplayerControlManager?.df_lyricTableView(withFrame: containerView.frame, contentInset: UIEdgeInsetsMake(0, 0, 120, 0), cellRowHeight: 60, cellBackgroundColor: UIColor.clear, currentLineLrcForegroundTextColor: UIColor.purple, currentLineLrcBackgroundTextColor: .lightGray, otherLineLrcBackgroundTextColor: .lightGray, currentLineLrcFont: UIFont.init(name: "Chalkboard SE", size: 17)!, otherLineLrcFont: UIFont(name: "Chalkboard SE", size: 17)!, superView: containerView, click: {(IndexPath) -> Void in
         })
+        
         containerView.addSubview(lyricTableView!)
     }
 
@@ -90,14 +90,20 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate
     }
     
     func df_playerAudioInfoModel(_ player: DFPlayer!) -> DFPlayerInfoModel! {
+//        let infoModel = DFPlayerInfoModel()
+//        do {
+//            infoModel.audioLyric = try String(contentsOfFile: Bundle.main.path(forResource: "lyric", ofType: "lrc")!, encoding: String.Encoding.utf8)
+//            print(infoModel.audioLyric!)
+//        } catch let err as NSError {
+//            print(err)
+//        }
+//
+//        return infoModel;
+        
         let infoModel = DFPlayerInfoModel()
-        do {
-            infoModel.audioLyric = try String(contentsOfFile: Bundle.main.path(forResource: "lyric", ofType: "lrc")!, encoding: String.Encoding.utf8)
-            print(infoModel.audioLyric!)
-        } catch let err as NSError {
-            print(err)
-        }
-
+        infoModel.audioLyric = contentList[Int(dfplayer.currentAudioModel.audioId)].lyric
+        print(infoModel.audioLyric!)
+        
         return infoModel;
     }
     
@@ -123,10 +129,41 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate
         
         let imageWidth = playButton.frame.size.height - 20
         dfplayerControlManager.df_playPauseBtn(withFrame: CGRect(x: playButton.frame.midX - imageWidth/2, y: playButton.frame.midY - imageWidth/2, width: imageWidth, height: imageWidth), superView: bottomStackView, block: nil)
-        dfplayerControlManager.df_nextAudioBtn(withFrame: CGRect(x: nextButton.frame.midX - imageWidth/2, y: nextButton.frame.midY - imageWidth/2, width: imageWidth, height: imageWidth), superView: bottomStackView, block: nil)
-        dfplayerControlManager.df_lastAudioBtn(withFrame: CGRect(x: previousButton.frame.midX - imageWidth/2, y: previousButton.frame.midY - imageWidth/2, width: imageWidth, height: imageWidth), superView: bottomStackView, block: nil)
+        dfplayerControlManager.df_nextAudioBtn(withFrame: CGRect(x: nextButton.frame.midX - imageWidth/2, y: nextButton.frame.midY - imageWidth/2, width: imageWidth, height: imageWidth), superView: bottomStackView, block: {
+            self.dfplayer.df_audioStop()
+            self.currentContentID = self.currentContentID + 1
+            if self.currentContentID > self.contentList.count - 1 {
+                self.currentContentID = self.currentContentID - 1
+                self.sendAlertWithoutHandler(alertTitle: "It's the last of the list", alertMessage: "", actionTitle: ["OK"])
+//                let OKHandler = { (action: UIAlertAction) -> Void in
+//                    self.dfplayer.df_audioStop()
+//                }
+//                self.sendAlertWithHandler(alertTitle: "It's the last of the list", alertMessage: "", actionTitle: ["OK"], handlers: [OKHandler])
+            } else {
+                self.updateTitle()
+            }
+        })
+        dfplayerControlManager.df_lastAudioBtn(withFrame: CGRect(x: previousButton.frame.midX - imageWidth/2, y: previousButton.frame.midY - imageWidth/2, width: imageWidth, height: imageWidth), superView: bottomStackView, block: {
+            self.dfplayer.df_audioStop()
+            self.currentContentID = self.currentContentID - 1
+            if self.currentContentID < 0 {
+                self.currentContentID = self.currentContentID + 1
+                self.sendAlertWithoutHandler(alertTitle: "It's the beginning of the list", alertMessage: "", actionTitle: ["OK"])
+                //                let OKHandler = { (action: UIAlertAction) -> Void in
+                //                    self.dfplayer.df_audioStop()
+                //                }
+                //                self.sendAlertWithHandler(alertTitle: "It's the last of the list", alertMessage: "", actionTitle: ["OK"], handlers: [OKHandler])
+            } else {
+                self.updateTitle()
+            }
+        })
         
         dfplayer.df_setPlayerWithPreviousAudioModel()
+    }
+    
+    func updateTitle() {
+        let content = contentList[Int(dfplayer.currentAudioModel.audioId)]
+        self.title = content.title
     }
     
     func prepareAudio() {

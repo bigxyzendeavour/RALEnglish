@@ -20,11 +20,15 @@
         self.backgroundLrcLabel = [[UILabel alloc] init];
         self.backgroundLrcLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         self.backgroundLrcLabel.textAlignment = NSTextAlignmentCenter;
+        self.backgroundLrcLabel.minimumScaleFactor = 0.5;
+        self.backgroundLrcLabel.numberOfLines = 0;
         [self.contentView addSubview:self.backgroundLrcLabel];
         
         self.foregroundLrcLabel = [[UILabel alloc] init];
         self.foregroundLrcLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         self.foregroundLrcLabel.textAlignment = NSTextAlignmentCenter;
+        self.foregroundLrcLabel.minimumScaleFactor = 0.5;
+        self.foregroundLrcLabel.numberOfLines = 0;
         [self.contentView addSubview:self.foregroundLrcLabel];
         
         self.lrcMasklayer = [CALayer layer];
@@ -408,7 +412,7 @@ UIScrollViewDelegate>
 - (void)lyricAnalyze:(NSString *)lyric{
     //这里先将每句歌词分割
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *arr = [lyric componentsSeparatedByString:@"\n"];
+        NSArray *arr = [lyric componentsSeparatedByString:@"^"];
         for (int i = 0; i < arr.count; i++) {
             NSString *lrc = arr[i];
             //如果该行为空不继续解析
@@ -567,6 +571,7 @@ UIScrollViewDelegate>
 
 - (CGRect)fitLrcLabelSizeWithLabel:(UILabel *)label{
     [label sizeToFit];
+    label.numberOfLines = 0;
     CGFloat foreW = label.frame.size.width;
     CGFloat foreX = self.frame.size.width - foreW;
     if (foreX >= 0) {

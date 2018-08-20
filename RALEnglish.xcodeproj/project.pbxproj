@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8BB52A175BC8A1E1B5BD9CE8 /* Pods_RALEnglish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CCDB9305462386F596C52E /* Pods_RALEnglish.framework */; };
+		C1A1C44A2129091C00172D6D /* TransitionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1C4492129091C00172D6D /* TransitionMode.swift */; };
+		C1A1C44C2129092200172D6D /* BubbleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1C44B2129092200172D6D /* BubbleTransition.swift */; };
 		C1A5DE6C211935D100A73FD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5DE6B211935D100A73FD4 /* AppDelegate.swift */; };
 		C1A5DE6E211935D100A73FD4 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5DE6D211935D100A73FD4 /* MainVC.swift */; };
 		C1A5DE71211935D100A73FD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1A5DE6F211935D100A73FD4 /* Main.storyboard */; };
@@ -30,6 +32,8 @@
 		43EC566B9EB12B0564667CF0 /* Pods-RALEnglish.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RALEnglish.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RALEnglish/Pods-RALEnglish.debug.xcconfig"; sourceTree = "<group>"; };
 		6A56F060204E588945CBB516 /* Pods-RALEnglish.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RALEnglish.release.xcconfig"; path = "Pods/Target Support Files/Pods-RALEnglish/Pods-RALEnglish.release.xcconfig"; sourceTree = "<group>"; };
 		B3CCDB9305462386F596C52E /* Pods_RALEnglish.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RALEnglish.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1A1C4492129091C00172D6D /* TransitionMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransitionMode.swift; path = "../../../../../Downloads/iOS-Bubble-Transition-master/TransitionMode.swift"; sourceTree = "<group>"; };
+		C1A1C44B2129092200172D6D /* BubbleTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BubbleTransition.swift; path = "../../../../../Downloads/iOS-Bubble-Transition-master/BubbleTransition.swift"; sourceTree = "<group>"; };
 		C1A5DE68211935D100A73FD4 /* RALEnglish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RALEnglish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A5DE6B211935D100A73FD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1A5DE6D211935D100A73FD4 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -143,6 +147,8 @@
 			children = (
 				C1A5DE882119394A00A73FD4 /* DataService.swift */,
 				C1A5DE8A2119395900A73FD4 /* Global.swift */,
+				C1A1C4492129091C00172D6D /* TransitionMode.swift */,
+				C1A1C44B2129092200172D6D /* BubbleTransition.swift */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -283,8 +289,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1A1C44C2129092200172D6D /* BubbleTransition.swift in Sources */,
 				C1A5DE8B2119395900A73FD4 /* Global.swift in Sources */,
 				C1A5DE9121193B5200A73FD4 /* ContentPlayerVC.swift in Sources */,
+				C1A1C44A2129091C00172D6D /* TransitionMode.swift in Sources */,
 				C1A5DE892119394A00A73FD4 /* DataService.swift in Sources */,
 				C1A5DE9521193DB600A73FD4 /* CategoryListCell.swift in Sources */,
 				C1A5DE8F21193B3B00A73FD4 /* CategoryListVC.swift in Sources */,

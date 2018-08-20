@@ -155,7 +155,7 @@ NSString * const DFPlaybackLikelyToKeepUpKey    = @"playbackLikelyToKeepUp";
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioPrePlayToLoadPreviousAudio) name:DFPlayerCurrentAudioInfoModelPlayNotiKey object:nil];
 }
 - (void)df_playerDidEnterForeground{self.isBackground = NO;}
-- (void)df_playerWillResignActive{self.isBackground = YES;}
+- (void)df_playerWillResignActive{self.isBackground = NO;}
 
 - (void)df_playerAudioRouteChange:(NSNotification *)notification {
     NSInteger routeChangeReason = [notification.userInfo[AVAudioSessionRouteChangeReasonKey] integerValue];
@@ -569,7 +569,7 @@ NSString * const DFPlaybackLikelyToKeepUpKey    = @"playbackLikelyToKeepUp";
     //监听播放进度
     if (self.isObserveProgress) {[self addPlayProgressTimeObserver];}
     //设置锁屏和控制中心音频信息
-    [self addInformationOfLockScreen];
+//    [self addInformationOfLockScreen];
     
     [self df_audioPlay];
 }
@@ -841,6 +841,7 @@ NSString * const DFPlaybackLikelyToKeepUpKey    = @"playbackLikelyToKeepUp";
     switch (self.playMode) {
         case DFPlayerModeOnlyOnce:
             if (self.isManualToPlay) {
+                [self df_audioPause];
                 [self audioLastOrderCycle];
             }else{
                 [self df_audioPause];
@@ -879,21 +880,27 @@ NSString * const DFPlaybackLikelyToKeepUpKey    = @"playbackLikelyToKeepUp";
 
 - (void)audioNextOrderCycle{
     self.currentAudioTag++;
-    if (self.currentAudioTag < 0 || self.currentAudioTag >= self.playerModelArray.count) {
-        self.currentAudioTag = 0;
+    if (self.currentAudioTag > self.playerModelArray.count - 1) {
+        self.currentAudioTag = self.playerModelArray.count - 1;
+        self.playIndex1 = self.currentAudioTag;
+        self.playIndex2 = 0;
+        self.currentAudioModel = self.playerModelArray[self.currentAudioTag];
+    } else {
+        self.playIndex1 = self.currentAudioTag;
+        self.playIndex2 = 0;
+        self.currentAudioModel = self.playerModelArray[self.currentAudioTag];
+        [self audioPrePlay];
     }
-    self.playIndex1 = self.currentAudioTag;
-    self.playIndex2 = 0;
-    self.currentAudioModel = self.playerModelArray[self.currentAudioTag];
-    [self audioPrePlay];
 }
 - (void)audioLastOrderCycle{
     self.currentAudioTag--;
     if (self.currentAudioTag < 0) {
-        self.currentAudioTag = self.playerModelArray.count-1;
+        self.currentAudioTag = 0;
+        self.currentAudioModel = self.playerModelArray[self.currentAudioTag];
+    } else {
+        self.currentAudioModel = self.playerModelArray[self.currentAudioTag];
+        [self audioPrePlay];
     }
-    self.currentAudioModel = self.playerModelArray[self.currentAudioTag];
-    [self audioPrePlay];
 }
 
 #pragma mark - 随机播放数组
