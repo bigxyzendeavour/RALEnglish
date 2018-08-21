@@ -70,18 +70,27 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwa-1t-9NS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.97326365110000002" green="1" blue="0.95879143290000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="B9U-2A-tys" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="7w1-La-kK9"/>
+                            <constraint firstAttribute="trailing" secondItem="pwa-1t-9NS" secondAttribute="trailing" id="AoC-ol-aX1"/>
+                            <constraint firstItem="pwa-1t-9NS" firstAttribute="leading" secondItem="At0-He-0Lk" secondAttribute="leading" id="Be5-Jo-NSw"/>
+                            <constraint firstItem="pwa-1t-9NS" firstAttribute="top" secondItem="At0-He-0Lk" secondAttribute="top" id="WUx-Q4-OUn"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="B9U-2A-tys" secondAttribute="bottom" id="dsa-Bt-cDK"/>
                             <constraint firstItem="B9U-2A-tys" firstAttribute="leading" secondItem="At0-He-0Lk" secondAttribute="leading" id="eE4-uC-RDS"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="pwa-1t-9NS" secondAttribute="bottom" id="wrl-s4-Rah"/>
                             <constraint firstAttribute="trailing" secondItem="B9U-2A-tys" secondAttribute="trailing" id="yVM-8q-iKk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uzD-fW-uBv"/>
                     <connections>
                         <outlet property="collectionView" destination="B9U-2A-tys" id="Gfh-t7-sP0"/>
+                        <outlet property="initView" destination="pwa-1t-9NS" id="Tca-8a-TA8"/>
                         <segue destination="jmq-2C-ghI" kind="show" identifier="CategoryListVC" id="KvY-AQ-htd"/>
                     </connections>
                 </viewController>
@@ -132,7 +141,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="1" green="0.4760972798957761" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="hrD-aa-4sk" firstAttribute="top" secondItem="XGy-5H-LvP" secondAttribute="bottom" constant="8" id="GFN-5V-ema"/>
                                                         <constraint firstAttribute="trailing" secondItem="XGy-5H-LvP" secondAttribute="trailing" constant="8" id="IB6-f3-9tu"/>
@@ -304,9 +313,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.97326365110000002" green="1" blue="0.95879143290000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" red="0.66298930852203619" green="0.062230544612220218" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.66298930850000004" green="0.062230544610000001" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>

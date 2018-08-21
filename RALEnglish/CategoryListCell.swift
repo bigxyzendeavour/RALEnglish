@@ -22,7 +22,6 @@ class CategoryListCell: UITableViewCell {
     
     func configureCell(content: Content) {
         contentCellContainerView.heightCircleView(radius: 15)
-        contentCellContainerView.backgroundColor = randomColor()
         contentTitleLabel.text = content.title
         contentDescriptionLabel.text = content.description
     }

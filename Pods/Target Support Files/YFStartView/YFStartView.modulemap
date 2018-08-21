@@ -1,0 +1,6 @@
+framework module YFStartView {
+  umbrella header "YFStartView-umbrella.h"
+
+  export *
+  module * { export * }
+}

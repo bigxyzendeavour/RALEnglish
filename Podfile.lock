@@ -52,6 +52,7 @@ PODS:
   - NVActivityIndicatorView (4.0.0):
     - NVActivityIndicatorView/Presenter (= 4.0.0)
   - NVActivityIndicatorView/Presenter (4.0.0)
+  - YFStartView (0.0.1)
 
 DEPENDENCIES:
   - DFPlayer
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - NVActivityIndicatorView
+  - YFStartView
 
 SPEC CHECKSUMS:
   DFPlayer: e4eff7dcd6afaf0042bb0a0b8369fe609defbad4
@@ -75,7 +77,8 @@ SPEC CHECKSUMS:
   leveldb-library: 44ef425bfde64f5b41daef86b38db2d13edbbee1
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   NVActivityIndicatorView: 54c9b93b6f25a4f467512680c0c90c09a1095cf2
+  YFStartView: 0f81260cc7da743133c738d9154e4e7d9cf20314
 
-PODFILE CHECKSUM: bf32ed11e1c143989e5df486448a1e1893575913
+PODFILE CHECKSUM: f351b8e1aad90fc01532b420f4066b6316fb9a9c
 
 COCOAPODS: 1.2.0

@@ -43,16 +43,8 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate
     var selectedPlayerInfoModel: DFPlayerInfoModel!
     var lyricTableView: UITableView!
     
-    //Test subtitles
-    var contentSubs = "Once a princess found a ring in her garden,^which gave five stunning powers to her,^which only she can enjoy.^The five powers were:to sleep effortlessly,^to make fire without flint,^to make rain shower without clouds in the sky,^to grow a crop she wanted,^and to sing like an enchanted siren.^One day, a witch cast a spell all through the kingdom.^The witch took away to sleep, fire, rain, crops,^and songs from everyone in the kingdom.^All this made the princess cry for the helpless people.^She ran out to her balcony and kept singing for months together.^She sang about good and evil,^rain and fire, and so on.^She has sung for a year.^One day the princess slowly disintegrated into the wind,^and the kingdom came back to its original state.^She was never seen again but was just heard.^Every year, good people of her kingdom held a celebration for her!^"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        tableView.delegate = self
-//        tableView.dataSource = self
-        
-        convertToSubtitle(content: contentSubs)
         
         initialize()
     }
@@ -71,7 +63,7 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate
     }
     
     func initializeUI() {
-        lyricTableView = dfplayerControlManager?.df_lyricTableView(withFrame: containerView.frame, contentInset: UIEdgeInsetsMake(0, 0, 120, 0), cellRowHeight: 60, cellBackgroundColor: UIColor.clear, currentLineLrcForegroundTextColor: UIColor.purple, currentLineLrcBackgroundTextColor: .lightGray, otherLineLrcBackgroundTextColor: .lightGray, currentLineLrcFont: UIFont.init(name: "Chalkboard SE", size: 17)!, otherLineLrcFont: UIFont(name: "Chalkboard SE", size: 17)!, superView: containerView, click: {(IndexPath) -> Void in
+        lyricTableView = dfplayerControlManager?.df_lyricTableView(withFrame: containerView.frame, contentInset: UIEdgeInsetsMake(0, 0, 120, 0), cellRowHeight: 60, cellBackgroundColor: UIColor.clear, currentLineLrcForegroundTextColor: UIColor.purple, currentLineLrcBackgroundTextColor: .lightGray, otherLineLrcBackgroundTextColor: .lightGray, currentLineLrcFont: UIFont.init(name: "Chalkboard SE", size: 16)!, otherLineLrcFont: UIFont(name: "Chalkboard SE", size: 16)!, superView: containerView, click: {(IndexPath) -> Void in
         })
         
         containerView.addSubview(lyricTableView!)
@@ -135,10 +127,6 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate
             if self.currentContentID > self.contentList.count - 1 {
                 self.currentContentID = self.currentContentID - 1
                 self.sendAlertWithoutHandler(alertTitle: "It's the last of the list", alertMessage: "", actionTitle: ["OK"])
-//                let OKHandler = { (action: UIAlertAction) -> Void in
-//                    self.dfplayer.df_audioStop()
-//                }
-//                self.sendAlertWithHandler(alertTitle: "It's the last of the list", alertMessage: "", actionTitle: ["OK"], handlers: [OKHandler])
             } else {
                 self.updateTitle()
             }
@@ -149,10 +137,6 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate
             if self.currentContentID < 0 {
                 self.currentContentID = self.currentContentID + 1
                 self.sendAlertWithoutHandler(alertTitle: "It's the beginning of the list", alertMessage: "", actionTitle: ["OK"])
-                //                let OKHandler = { (action: UIAlertAction) -> Void in
-                //                    self.dfplayer.df_audioStop()
-                //                }
-                //                self.sendAlertWithHandler(alertTitle: "It's the last of the list", alertMessage: "", actionTitle: ["OK"], handlers: [OKHandler])
             } else {
                 self.updateTitle()
             }

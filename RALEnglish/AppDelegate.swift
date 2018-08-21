@@ -8,28 +8,42 @@
 
 import UIKit
 import Firebase
+import YFStartView
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
-        var splashView = UIImageView(frame: CGRect(x: 0, y: 0, width: (window?.screen.bounds.width)!, height: (window?.screen.bounds.height)!))
-        splashView.image = UIImage(named: "Splash")
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let initialViewController = storyboard.instantiateInitialViewController()
         
-        splashView = UIImageView(frame: CGRect(x: 0, y: 0, width: (window?.screen.bounds.width)!, height: (window?.screen.bounds.height)!))
-        splashView.image = UIImage()
-        window?.addSubview(splashView)
-        window?.bringSubview(toFront: splashView)
+        // Override point for customization after application launch.
         
-        UIView.animate(withDuration: 0.5, animations: {splashView.alpha = 0}) { (true) in
-            splashView.removeFromSuperview()
-        }
+        self.window?.rootViewController = initialViewController
+        self.window?.backgroundColor = UIColor.black
+        self.window?.makeKeyAndVisible()
+        
+        let startView = YFStartView();
+        startView.isAllowRandomImage = true
+        startView.randomImages = ["Splash"]
+        startView.contentMode = .scaleAspectFit
+        
+        //LogoPositionCenter
+        //    startView.logoPosition = LogoPositionCenter;
+        //    startView.logoImage = [UIImage imageNamed:@"logo"];
+        
+        //LogoPositionCenter & UIImage
+        //    startView.logoPosition = LogoPositionButtom;
+        //    startView.logoImage = [UIImage imageNamed:@"logo"];
+        
+        startView.configYFStartView()
+        
         return true
     }
 

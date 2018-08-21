@@ -10,6 +10,7 @@ import UIKit
 
 class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    @IBOutlet weak var initView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var selectedItem: String!
@@ -26,7 +27,11 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         layout.minimumInteritemSpacing = 0
         layout.itemSize = CGSize(width: (collectionView.frame.width - 20)/2, height: (collectionView.frame.height - 20)/3)
         
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
+            self.initView.isHidden = true
+        }
     }
+    
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

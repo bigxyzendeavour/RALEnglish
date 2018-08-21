@@ -10,6 +10,7 @@
 		8BB52A175BC8A1E1B5BD9CE8 /* Pods_RALEnglish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CCDB9305462386F596C52E /* Pods_RALEnglish.framework */; };
 		C1A1C44A2129091C00172D6D /* TransitionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1C4492129091C00172D6D /* TransitionMode.swift */; };
 		C1A1C44C2129092200172D6D /* BubbleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1C44B2129092200172D6D /* BubbleTransition.swift */; };
+		C1A1C452212BAD4600172D6D /* Splash.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1A1C451212BAD4600172D6D /* Splash.jpg */; };
 		C1A5DE6C211935D100A73FD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5DE6B211935D100A73FD4 /* AppDelegate.swift */; };
 		C1A5DE6E211935D100A73FD4 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5DE6D211935D100A73FD4 /* MainVC.swift */; };
 		C1A5DE71211935D100A73FD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1A5DE6F211935D100A73FD4 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 		B3CCDB9305462386F596C52E /* Pods_RALEnglish.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RALEnglish.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A1C4492129091C00172D6D /* TransitionMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransitionMode.swift; path = "../../../../../Downloads/iOS-Bubble-Transition-master/TransitionMode.swift"; sourceTree = "<group>"; };
 		C1A1C44B2129092200172D6D /* BubbleTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BubbleTransition.swift; path = "../../../../../Downloads/iOS-Bubble-Transition-master/BubbleTransition.swift"; sourceTree = "<group>"; };
+		C1A1C451212BAD4600172D6D /* Splash.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash.jpg; sourceTree = "<group>"; };
 		C1A5DE68211935D100A73FD4 /* RALEnglish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RALEnglish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A5DE6B211935D100A73FD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1A5DE6D211935D100A73FD4 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				C1E08629211C9F5A00DE4DA2 /* RALEnglish-Bridging-Header.h */,
 				C1A5DE72211935D100A73FD4 /* Assets.xcassets */,
 				C1A5DE74211935D100A73FD4 /* LaunchScreen.storyboard */,
+				C1A1C451212BAD4600172D6D /* Splash.jpg */,
 				C1F7BD07211FC91A00BE35AE /* lyric.lrc */,
 				C1A5DE77211935D100A73FD4 /* Info.plist */,
 				C1A5DE7F2119364A00A73FD4 /* GoogleService-Info.plist */,
@@ -226,6 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1A1C452212BAD4600172D6D /* Splash.jpg in Resources */,
 				C1A5DE76211935D100A73FD4 /* LaunchScreen.storyboard in Resources */,
 				C1A5DE802119364A00A73FD4 /* GoogleService-Info.plist in Resources */,
 				C1F7BD08211FC91A00BE35AE /* lyric.lrc in Resources */,
