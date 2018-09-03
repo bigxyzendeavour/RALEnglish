@@ -87,7 +87,7 @@
 #pragma mark - Public Methods
 - (void)configYFStartView {
     _bgImageView = [[UIImageView alloc] initWithFrame:kScreen_Bounds];
-    _bgImageView.contentMode = UIViewContentModeScaleAspectFill;
+    _bgImageView.contentMode = UIViewContentModeScaleAspectFit;
     _bgImageView.alpha = 0.0;
     _bgImageView.image = [self startImage];
     [self addSubview:_bgImageView];

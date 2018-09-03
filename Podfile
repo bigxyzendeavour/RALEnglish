@@ -13,5 +13,7 @@ target 'RALEnglish' do
   pod 'Firebase/Storage'
   pod 'Firebase/Auth'
   pod 'YFStartView'
+  pod 'FoldingCell'
+  pod 'DKChainableAnimationKit', '~> 2.0.0'
 
 end

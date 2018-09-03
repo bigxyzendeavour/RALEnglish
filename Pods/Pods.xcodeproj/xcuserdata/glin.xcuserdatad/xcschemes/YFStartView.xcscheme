@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'CA68ABA9193720BE1536993A013A1C63'
+               BlueprintIdentifier = 'CE89DDCF95AD7997369D216C2DE09C34'
                BlueprintName = 'YFStartView'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'YFStartView.framework'>

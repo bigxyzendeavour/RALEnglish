@@ -103,7 +103,7 @@ NSString * const DFPlaybackLikelyToKeepUpKey    = @"playbackLikelyToKeepUp";
     self.isOthetPlaying = [AVAudioSession sharedInstance].otherAudioPlaying;
     
     NSInteger user_playerMode = [[NSUserDefaults standardUserDefaults] integerForKey:DFPlayerModeKey];
-    self.playMode = user_playerMode?user_playerMode:DFPlayerModeOnlyOnce;
+    self.playMode = DFPlayerModeOrderCycle;
     self.state = DFPlayerStateStopped;
     self.isObserveProgress          = YES;
     self.isObserveBufferProgress    = YES;
@@ -218,7 +218,7 @@ NSString * const DFPlaybackLikelyToKeepUpKey    = @"playbackLikelyToKeepUp";
 
 -(void)df_playerDidPlayToEndTime:(NSNotification *)notification{
     self.isNaturalToEndTime = YES;
-    [self df_audioStop];
+    [self df_audioNext];
     if (self.delegate && [self.delegate respondsToSelector:@selector(df_playerDidPlayToEndTime:)]) {
         [self.delegate df_playerDidPlayToEndTime:self];
     }

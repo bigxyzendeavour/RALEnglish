@@ -1,5 +1,5 @@
 
-//  ContentPlayerVC.swift
+//  StoryPlayerVC.swift
 //  EnglishCollection
 //
 //  Created by Grandon Lin on 2018-08-02.
@@ -8,16 +8,13 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 
-class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate, DFPlayerDataSource {
+class StoryPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate, DFPlayerDataSource {
 
     @IBOutlet weak var containerView: UIScrollView!
-    @IBOutlet weak var lastButtonView: UIView!
-    @IBOutlet weak var playPauseButtonView: UIView!
-    @IBOutlet weak var nextButtonView: UIView!
     @IBOutlet weak var sliderView: UIView!
     @IBOutlet weak var bottomStackView: UIStackView!
-    
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
@@ -25,7 +22,9 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate
     @IBOutlet weak var progressSlider: UISlider!
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var endTimeLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
+    var selectedMainCategory: String!
     var selectedContent: Content!
     var selectedPlayerModel: DFPlayerModel!
     var currentContentID: Int! //Index
@@ -55,6 +54,7 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate
     
     func initialize() {
         self.title = selectedContent.title
+        
         UserDefaults.standard.set(0, forKey: "playerProgressSliderValue")
         
         initPlayer()
@@ -63,18 +63,10 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate
     }
     
     func initializeUI() {
-        lyricTableView = dfplayerControlManager?.df_lyricTableView(withFrame: containerView.frame, contentInset: UIEdgeInsetsMake(0, 0, 120, 0), cellRowHeight: 60, cellBackgroundColor: UIColor.clear, currentLineLrcForegroundTextColor: UIColor.purple, currentLineLrcBackgroundTextColor: .lightGray, otherLineLrcBackgroundTextColor: .lightGray, currentLineLrcFont: UIFont.init(name: "Chalkboard SE", size: 16)!, otherLineLrcFont: UIFont(name: "Chalkboard SE", size: 16)!, superView: containerView, click: {(IndexPath) -> Void in
+        lyricTableView = dfplayerControlManager?.df_lyricTableView(withFrame: containerView.frame, contentInset: UIEdgeInsetsMake(0, 0, 120, 0), cellRowHeight: 60, cellBackgroundColor: UIColor.clear, currentLineLrcForegroundTextColor: nil, currentLineLrcBackgroundTextColor: UIColor.purple, otherLineLrcBackgroundTextColor: .lightGray, currentLineLrcFont: UIFont.init(name: "Arial", size: 19)!, otherLineLrcFont: UIFont(name: "Arial", size: 19)!, superView: containerView, click: {(IndexPath) -> Void in
         })
         
         containerView.addSubview(lyricTableView!)
-    }
-
-    func indexPathForPreferredFocusedView(in tableView: UITableView) -> IndexPath? {
-        return tableView.indexPathForSelectedRow
-    }
-    
-    func convertToSubtitle(content: String) {
-        subtitles = content.components(separatedBy: "^")
     }
     
     func df_playerModelArray() -> [DFPlayerModel]! {
@@ -93,15 +85,16 @@ class ContentPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate
 //        return infoModel;
         
         let infoModel = DFPlayerInfoModel()
-        infoModel.audioLyric = contentList[Int(dfplayer.currentAudioModel.audioId)].lyric
-        print(infoModel.audioLyric!)
+        if let content = contentList[Int(dfplayer.currentAudioModel.audioId)] as? StoryContent {
+            infoModel.audioLyric = content.lyric
+        }
         
         return infoModel;
     }
     
-    func df_playerAudioWillAdd(toPlayQueue player: DFPlayer!) {
-        lyricTableView.reloadData()
-    }
+//    func df_playerAudioWillAdd(toPlayQueue player: DFPlayer!) {
+//        lyricTableView.reloadData()
+//    }
     
     func initPlayer() {
         dfplayer = DFPlayer.shareInstance()

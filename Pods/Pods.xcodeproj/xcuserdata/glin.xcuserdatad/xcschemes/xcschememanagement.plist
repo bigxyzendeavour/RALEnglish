@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DKChainableAnimationKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FoldingCell.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,6 +62,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>1F06D13A8F8BB8DD9E9440B1C2A6E36F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3B08C49A396BAA0D9DCAD4460CC52F95</key>
 		<dict>
 			<key>primary</key>
@@ -67,17 +82,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>A99CCBCEF1E2207E0BEAFEB7DC9B2471</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B626E472969D6F87698AF0041EAAFC38</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C216091EA996A24BE069AE22C134C760</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CA68ABA9193720BE1536993A013A1C63</key>
+		<key>CE89DDCF95AD7997369D216C2DE09C34</key>
 		<dict>
 			<key>primary</key>
 			<true/>

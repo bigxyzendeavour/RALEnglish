@@ -10,7 +10,7 @@ import UIKit
 import NVActivityIndicatorView
 
 let activityData = ActivityData()
-let THEME_COLOR = UIColor.purple
+let THEME_COLOR = UIColor(red: 121.0/255.0, green: 83.0/255.0, blue: 210.0/255.0, alpha: 1)
 var isRefreshing = false
 
 extension UIView {
@@ -54,5 +54,14 @@ extension UIViewController {
             alert.addAction(UIAlertAction(title: actionTitle[i], style: .default, handler: handlers[i]))
         }
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension UITableView {
+    func indexPathForView(_ view: UIView) -> IndexPath? {
+        let center = view.center
+        let viewCenter = self.convert(center, from: view.superview)
+        let indexPath = self.indexPathForRow(at: viewCenter)
+        return indexPath
     }
 }

@@ -261,7 +261,7 @@ UIScrollViewDelegate>
                     cell.backgroundLrcLabel.textColor = self.currentLineLrcForegroundTextColor;
                     cell.backgroundLrcLabel.font = self.currentLineLrcFont;
                 }else{
-                    cell.backgroundLrcLabel.textColor   = self.currentLineLrcBackgroundTextColor;
+                    cell.backgroundLrcLabel.textColor   = [UIColor lightGrayColor];
                     cell.backgroundLrcLabel.font        = self.currentLineLrcFont;
                 }
                 if (self.currentLineLrcFont.pointSize != self.otherLineLrcFont.pointSize) {

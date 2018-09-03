@@ -156,6 +156,9 @@ NSString * const DFTotalTimeKey      = @"totalTime";
     self.playBtn.handleJFEventBlock = ^(UIButton *sender) {
         if ([DFPlayer shareInstance].state == DFPlayerStateStopped) {
             [DFPlayer shareInstance].df_audioPlay;
+            if (block) {
+                block();
+            }
         } else {
             if ([DFPlayer shareInstance].currentAudioModel.audioUrl) {
                 if ([DFPlayer shareInstance].state == DFPlayerStatePlaying) {

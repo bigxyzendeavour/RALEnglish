@@ -1,52 +1,50 @@
 //
-//  CategoryListVC.swift
-//  EnglishCollection
+//  MusicCategoryListVC.swift
+//  RALEnglish
 //
-//  Created by Grandon Lin on 2018-08-02.
+//  Created by Grandon Lin on 2018-08-25.
 //  Copyright © 2018 Grandon Lin. All rights reserved.
 //
 
 import UIKit
 import Firebase
-import NVActivityIndicatorView
 
-class CategoryListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MusicCategoryListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var selectedCategory: String!
-    var contentList = [Content]()
+    var selectedMainCategory: String!
+    var selectedSubCategory: String!
+    var contentList = [MusicContent]()
+    var playerModels = [DFPlayerModel]()
     var selectedContent: Content!
     var selectedContentID: Int!
-    var playerModels = [DFPlayerModel]()
     var selectedPlayerModel: DFPlayerModel!
-//    var urls = [String]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.delegate = self
         tableView.dataSource = self
         
         downloadCateogyList()
     }
-
+    
     func downloadCateogyList() {
         startRefreshing()
         DispatchQueue.main.async {
-            DataService.ds.REF_BASE.child(self.selectedCategory).observeSingleEvent(of: .value, with: { (snapshot) in
+            DataService.ds.REF_BASE.child(self.selectedMainCategory).child(self.selectedSubCategory).observeSingleEvent(of: .value, with: { (snapshot) in
                 if let snapShot = snapshot.children.allObjects as? [DataSnapshot] {
                     for i in 0..<snapShot.count {
                         let contentID = i
                         let data = snapShot[i].value as! Dictionary<String, Any>
-                        let content = Content(contentID: contentID, contentData: data)
+                        let content = MusicContent(contentID: contentID, contentData: data)
                         self.contentList.append(content)
                         let model = DFPlayerModel()
                         model.audioId = UInt(NSInteger(content.contentID))
                         model.audioUrl = NSURL(string: content.contentURL) as! URL
                         self.playerModels.append(model)
                     }
-                    
                     self.tableView.reloadData()
                     self.endRefrenshing()
                 }
@@ -65,25 +63,26 @@ class CategoryListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let content = contentList[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryListCell") as! CategoryListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MusicCategoryListCell") as! MusicCategoryListCell
         cell.configureCell(content: content)
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? MusicPlayerVC {
+            destination.selectedContent = selectedContent
+            destination.contentList = contentList
+            destination.currentContentID = selectedContentID
+            destination.playerModels = playerModels
+            destination.selectedPlayerModel = selectedPlayerModel
+            destination.selectedSubCategory = selectedSubCategory
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedContent = contentList[indexPath.row]
         selectedContentID = indexPath.row
         selectedPlayerModel = playerModels[indexPath.row]
-        performSegue(withIdentifier: "ContentPlayerVC", sender: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? ContentPlayerVC {
-            destination.selectedContent = selectedContent
-            destination.contentList = contentList
-            destination.currentContentID = selectedContentID
-            destination.playerModels = playerModels
-            destination.selectedPlayerModel = selectedPlayerModel
-        }
+        performSegue(withIdentifier: "MusicPlayerVC", sender: nil)
     }
 }

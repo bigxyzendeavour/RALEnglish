@@ -1,23 +1,20 @@
-
 //
 //  Content.swift
-//  EnglishCollection
+//  RALEnglish
 //
-//  Created by Grandon Lin on 2018-08-02.
+//  Created by Grandon Lin on 2018-08-28.
 //  Copyright © 2018 Grandon Lin. All rights reserved.
 //
 
-import UIKit
-import AVFoundation
+import Foundation
 
 class Content {
     
     private var _contentID: Int!
     private var _title: String!
-    private var _description: String!
     private var _contentURL: String!
-    private var _contentData: Data!
-    private var _lyric: String!
+    private var _contentDisplayURL: String!
+    private var _contentLength: Int!
     
     init() {
         
@@ -25,25 +22,21 @@ class Content {
     
     init(contentID: Int, contentData: Dictionary<String, Any>) {
         self._contentID = contentID
+        
         if let contentTitle = contentData["Title"] as? String {
             self._title = contentTitle
         }
         
-        if let contentDesc = contentData["Description"] as? String {
-            self._description = contentDesc
-        }
-        
         if let contentURL = contentData["URL"] as? String {
             self._contentURL = contentURL
-            do {
-                self._contentData = try Data(contentsOf: URL(string: contentURL)!)
-            } catch let err as NSError {
-                print(err)
-            }
         }
         
-        if let contentLyric = contentData["Lyric"] as? String {
-            self._lyric = contentLyric
+        if let contentDisplayImageURL = contentData["Display URL"] as? String {
+            self._contentDisplayURL = contentDisplayImageURL
+        }
+        
+        if let contentLength = contentData["Total Time"] as? Int {
+            self._contentLength = contentLength
         }
     }
     
@@ -68,18 +61,6 @@ class Content {
         }
     }
     
-    var description: String {
-        get {
-            if _description == nil {
-                _description = ""
-            }
-            return _description
-        }
-        set {
-            _description = newValue
-        }
-    }
-    
     var contentURL: String {
         get {
             if _contentURL == nil {
@@ -92,27 +73,27 @@ class Content {
         }
     }
     
-    var contentData: Data {
+    var contentDisplayURL: String {
         get {
-            if _contentData == nil {
-                _contentData = Data()
+            if _contentDisplayURL == nil {
+                _contentDisplayURL = ""
             }
-            return _contentData
+            return _contentDisplayURL
         }
         set {
-            _contentData = newValue
+            _contentDisplayURL = newValue
         }
     }
     
-    var lyric: String {
+    var contentLength: Int {
         get {
-            if _lyric == nil {
-                _lyric = ""
+            if _contentLength == nil {
+                _contentLength = 0
             }
-            return _lyric
+            return _contentLength
         }
         set {
-            _lyric = newValue
+            _contentLength = newValue
         }
     }
 }
