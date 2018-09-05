@@ -56,6 +56,7 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
             self.initSleepTimePlayer()
             downloadSleepMusic { (playerModelsResult) in
                 self.playerModels = playerModelsResult
+                print(self.playerModels)
                 self.playStory()
             }
         } else {
@@ -63,8 +64,6 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
             initPlayer()
             playStory()
         }
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -89,8 +88,6 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
     func downloadSleepMusic(completion: @escaping ([DFPlayerModel]) -> Void) {
         if playerModels == nil {
             playerModels = [DFPlayerModel]()
-        } else {
-            playerModels.removeAll()
         }
         DataService.ds.REF_MUSIC.child("Sleep Time").observeSingleEvent(of: .value, with: { (snapshot) in
             if let snapShot = snapshot.children.allObjects as? [DataSnapshot] {
@@ -277,6 +274,11 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
         myView.layer.removeAllAnimations()
     }
     
+    func stopAnimation(layer: CALayer) {
+        layer.speed = 0.0
+        layer.timeOffset = CFTimeInterval(0)
+    }
+    
     func pauseLayer(layer: CALayer) {
         let pausedTime: CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil)
         layer.speed = 0.0
@@ -296,7 +298,8 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
         dfplayer.df_audioStop()
         playerState = Enum().MUSIC_PLAYER_INACTIVE
         animationIsRunning = false
-        stopAnimationForView(cdImageView)
+//        stopAnimationForView(cdImageView)
+        stopAnimation(layer: self.cdImageView.layer)
     }
     
 }
