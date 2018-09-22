@@ -138,6 +138,10 @@ class StoryPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate, 
         dfplayer.df_setPlayerWithPreviousAudioModel()
     }
     
+    func df_playerDidPlay(toEndTime player: DFPlayer!) {
+        self.updateTitle()
+    }
+    
     func updateTitle() {
         let content = contentList[Int(dfplayer.currentAudioModel.audioId)]
         self.title = content.title

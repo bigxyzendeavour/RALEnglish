@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G22010" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="b07-Ml-LuX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G22010" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FbF-JY-neL">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -787,6 +787,38 @@
             </objects>
             <point key="canvasLocation" x="-228" y="35.532233883058474"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="hc9-8t-qFc">
+            <objects>
+                <viewController id="FbF-JY-neL" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QAk-8N-YSh"/>
+                        <viewControllerLayoutGuide type="bottom" id="F89-NZ-6OV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SOF-pr-0fu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="MgG-NJ-mma">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="MgG-NJ-mma" secondAttribute="bottom" id="2Mc-xa-skD"/>
+                            <constraint firstAttribute="trailing" secondItem="MgG-NJ-mma" secondAttribute="trailing" id="H5V-98-LMS"/>
+                            <constraint firstItem="MgG-NJ-mma" firstAttribute="leading" secondItem="SOF-pr-0fu" secondAttribute="leading" id="qys-8w-xWX"/>
+                            <constraint firstItem="MgG-NJ-mma" firstAttribute="top" secondItem="SOF-pr-0fu" secondAttribute="top" id="z67-Yu-3mv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="b07-Ml-LuX" kind="show" id="7Q8-jr-65e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6qW-yg-PmF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2022" y="35"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="znJ-Ha-Bbr">
             <objects>
@@ -794,12 +826,10 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="k2u-so-u6B">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="k2u-so-u6B">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.47450980390000003" green="0.32549019610000002" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.47450980390000003" green="0.32549019610000002" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -816,6 +846,7 @@
     </scenes>
     <resources>
         <image name="Play" width="48" height="48"/>
+        <image name="Splash" width="640" height="1136"/>
         <image name="Stop" width="48" height="48"/>
         <image name="books" width="750" height="1000"/>
         <image name="cd2" width="204" height="204"/>

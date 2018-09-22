@@ -142,7 +142,7 @@ NSString * const DFPlaybackLikelyToKeepUpKey    = @"playbackLikelyToKeepUp";
     });
     
     //将要进入后台
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(df_playerWillResignActive) name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(df_playerWillResignActive) name:UIApplicationWillResignActiveNotification object:nil];
     //已经进入前台
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(df_playerDidEnterForeground) name:UIApplicationDidBecomeActiveNotification object:nil];
     //监测耳机

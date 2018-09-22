@@ -44,6 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         startView.configYFStartView()
         
+        
+        
         return true
     }
 

@@ -37,5 +37,4 @@ class MainVC: UIViewController {
         selection = Enum().MUSIC
         performSegue(withIdentifier: "MainCategoryVC", sender: nil)
     }
-
 }
