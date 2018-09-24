@@ -23,6 +23,7 @@ class StoryPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate, 
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var endTimeLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var bottomBtnView: UIView!
     
     var selectedMainCategory: String!
     var selectedContent: Content!
@@ -49,7 +50,7 @@ class StoryPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate, 
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        dfplayer.df_audioPause()
+        dfplayer.df_audioStop()
     }
     
     func initialize() {
@@ -109,9 +110,6 @@ class StoryPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate, 
         
         dfplayerControlManager = DFPlayerControlManager.shareInstance()
 //        dfplayerControlManager.df_bufferProgressView(withFrame: progressSlider.frame, trackTintColor: .green, progressTintColor: .red, superView: self.view!)
-        dfplayerControlManager.df_slider(withFrame: sliderView.frame, minimumTrackTintColor: .white, maximumTrackTintColor: .white, trackHeight: 15, thumbSize: CGSize(width: 26, height: 26), superView: self.view)
-        dfplayerControlManager.df_currentTimeLabel(withFrame: CGRect(x: startTimeLabel.frame.origin.x, y: startTimeLabel.frame.origin.y, width: startTimeLabel.frame.width, height: startTimeLabel.frame.height), superView: self.view)
-        dfplayerControlManager.df_totalTimeLabel(withFrame: CGRect(x: endTimeLabel.frame.origin.x, y: endTimeLabel.frame.origin.y, width: endTimeLabel.frame.width, height: endTimeLabel.frame.height), superView: self.view)
         
         let imageWidth = playButton.frame.size.height - 20
         dfplayerControlManager.df_playPauseBtn(withFrame: CGRect(x: playButton.frame.midX - imageWidth/2, y: playButton.frame.midY - imageWidth/2, width: imageWidth, height: imageWidth), superView: bottomStackView, block: nil)
@@ -135,6 +133,9 @@ class StoryPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate, 
                 self.updateTitle()
             }
         })
+        dfplayerControlManager.df_slider(withFrame: CGRect(x: 16, y: self.view.frame.maxY - 151, width: sliderView.frame.width, height: sliderView.frame.height), minimumTrackTintColor: .white, maximumTrackTintColor: .white, trackHeight: 15, thumbSize: CGSize(width: 26, height: 26), superView: self.view)
+        dfplayerControlManager.df_currentTimeLabel(withFrame: CGRect(x: 8 , y: self.view.frame.maxY - 113, width: startTimeLabel.frame.width, height: startTimeLabel.frame.height), superView: self.view)
+        dfplayerControlManager.df_totalTimeLabel(withFrame: CGRect(x: self.view.frame.maxX - 63, y: self.view.frame.maxY - 113, width: endTimeLabel.frame.width, height: endTimeLabel.frame.height), superView: self.view)
         
         dfplayer.df_setPlayerWithPreviousAudioModel()
     }
