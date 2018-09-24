@@ -20,12 +20,14 @@ class StoryCategoryListCell: FoldingCell {
     @IBOutlet weak var contentDescriptionLabel: UILabel!
     @IBOutlet weak var contentAuthorLabel: UILabel!
     @IBOutlet weak var contentDisplayImage: UIImageView!
+    @IBOutlet weak var playButton: UIButton!
+    
     
     var delegate: StoryCategoryListCellDlegate!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        playButton.heightCircleView()
     }
     
     func configureCell(content: StoryContent) {

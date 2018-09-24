@@ -15,7 +15,6 @@ fileprivate struct C {
     struct CellHeight {
         static let close: CGFloat = 100
         static let open: CGFloat = 440
-        
     }
 }
 
@@ -93,22 +92,29 @@ class StoryCategoryListVC: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let cell = tableView.cellForRow(at: indexPath) as! StoryCategoryListCell
         
         var duration = 0.0
         let cellIsCollapsed = cellHeights[indexPath.row] == C.CellHeight.close
         if cellIsCollapsed == true {
             if openCell != nil {
-                let index = tableView.indexPath(for: openCell!)
-                cellHeights[index!.row] = C.CellHeight.close
-                openCell.unfold(false, animated: true, completion: nil)
-                openCell = nil
+                let visibleCells = tableView.visibleCells as! [StoryCategoryListCell]
+                if visibleCells.contains(openCell) {
+                    let index = tableView.indexPath(for: openCell!)
+                    cellHeights[index!.row] = C.CellHeight.close
+                    openCell.unfold(false, animated: true, completion: nil)
+                    openCell = nil
+                }
             }
+            let openContent = contentList[indexPath.row]
+            self.title = openContent.title
             cellHeights[indexPath.row] = C.CellHeight.open
             cell.unfold(true, animated: true, completion: nil)
             duration = 0.5
             openCell = cell
         } else {
+            self.title = ""
             cellHeights[indexPath.row] = C.CellHeight.close
             cell.unfold(false, animated: true, completion: nil)
             duration = 0.8

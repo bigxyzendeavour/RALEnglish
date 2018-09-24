@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8BB52A175BC8A1E1B5BD9CE8 /* Pods_RALEnglish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CCDB9305462386F596C52E /* Pods_RALEnglish.framework */; };
 		C104A0D221324A4700F25A84 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C104A0D121324A4700F25A84 /* MainVC.swift */; };
-		C104A0D4213250B400F25A84 /* MainCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C104A0D3213250B400F25A84 /* MainCategoryVC.swift */; };
+		C104A0D4213250B400F25A84 /* StoryMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C104A0D3213250B400F25A84 /* StoryMenuVC.swift */; };
 		C104A0D6213250F800F25A84 /* StoryCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C104A0D5213250F800F25A84 /* StoryCategoryCell.swift */; };
 		C104A0D8213252BF00F25A84 /* MusicCategoryListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C104A0D7213252BF00F25A84 /* MusicCategoryListVC.swift */; };
 		C104A0DA21337F3E00F25A84 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C104A0D921337F3E00F25A84 /* Enum.swift */; };
@@ -33,6 +33,7 @@
 		C1A5DE9321193DA000A73FD4 /* MainCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5DE9221193DA000A73FD4 /* MainCategoryCell.swift */; };
 		C1A5DE9521193DB600A73FD4 /* StoryCategoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5DE9421193DB600A73FD4 /* StoryCategoryListCell.swift */; };
 		C1D11A5F2155FAD70010F634 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1D11A5E2155FAD70010F634 /* GoogleService-Info.plist */; };
+		C1D11A61215744CB0010F634 /* MusicMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11A60215744CB0010F634 /* MusicMenuVC.swift */; };
 		C1F7BD08211FC91A00BE35AE /* lyric.lrc in Resources */ = {isa = PBXBuildFile; fileRef = C1F7BD07211FC91A00BE35AE /* lyric.lrc */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +42,7 @@
 		6A56F060204E588945CBB516 /* Pods-RALEnglish.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RALEnglish.release.xcconfig"; path = "Pods/Target Support Files/Pods-RALEnglish/Pods-RALEnglish.release.xcconfig"; sourceTree = "<group>"; };
 		B3CCDB9305462386F596C52E /* Pods_RALEnglish.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RALEnglish.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C104A0D121324A4700F25A84 /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
-		C104A0D3213250B400F25A84 /* MainCategoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCategoryVC.swift; sourceTree = "<group>"; };
+		C104A0D3213250B400F25A84 /* StoryMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryMenuVC.swift; sourceTree = "<group>"; };
 		C104A0D5213250F800F25A84 /* StoryCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCategoryCell.swift; sourceTree = "<group>"; };
 		C104A0D7213252BF00F25A84 /* MusicCategoryListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicCategoryListVC.swift; sourceTree = "<group>"; };
 		C104A0D921337F3E00F25A84 /* Enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 		C1A5DE9221193DA000A73FD4 /* MainCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCategoryCell.swift; sourceTree = "<group>"; };
 		C1A5DE9421193DB600A73FD4 /* StoryCategoryListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCategoryListCell.swift; sourceTree = "<group>"; };
 		C1D11A5E2155FAD70010F634 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		C1D11A60215744CB0010F634 /* MusicMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicMenuVC.swift; sourceTree = "<group>"; };
 		C1E08629211C9F5A00DE4DA2 /* RALEnglish-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "RALEnglish-Bridging-Header.h"; path = "RALEnglish/RALEnglish-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		C1F7BD07211FC91A00BE35AE /* lyric.lrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = lyric.lrc; path = ../lyric.lrc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,9 +145,10 @@
 			isa = PBXGroup;
 			children = (
 				C104A0D121324A4700F25A84 /* MainVC.swift */,
-				C104A0D3213250B400F25A84 /* MainCategoryVC.swift */,
+				C104A0D3213250B400F25A84 /* StoryMenuVC.swift */,
 				C1A5DE8E21193B3B00A73FD4 /* StoryCategoryListVC.swift */,
 				C1A5DE9021193B5200A73FD4 /* StoryPlayerVC.swift */,
+				C1D11A60215744CB0010F634 /* MusicMenuVC.swift */,
 				C104A0D7213252BF00F25A84 /* MusicCategoryListVC.swift */,
 				C1A5DE6D211935D100A73FD4 /* MusicPlayerVC.swift */,
 			);
@@ -329,12 +332,13 @@
 				C1A1C44A2129091C00172D6D /* TransitionMode.swift in Sources */,
 				C104A0E22135104A00F25A84 /* MusicCategoryListCell.swift in Sources */,
 				C1A5DE892119394A00A73FD4 /* DataService.swift in Sources */,
+				C1D11A61215744CB0010F634 /* MusicMenuVC.swift in Sources */,
 				C1A5DE9521193DB600A73FD4 /* StoryCategoryListCell.swift in Sources */,
 				C1A5DE8F21193B3B00A73FD4 /* StoryCategoryListVC.swift in Sources */,
 				C104A0E021350AC900F25A84 /* MusicContent.swift in Sources */,
 				C1A5DE9321193DA000A73FD4 /* MainCategoryCell.swift in Sources */,
 				C1A5DE6E211935D100A73FD4 /* MusicPlayerVC.swift in Sources */,
-				C104A0D4213250B400F25A84 /* MainCategoryVC.swift in Sources */,
+				C104A0D4213250B400F25A84 /* StoryMenuVC.swift in Sources */,
 				C1A5DE8D2119398100A73FD4 /* StoryContent.swift in Sources */,
 				C104A0DE213504B000F25A84 /* Content.swift in Sources */,
 				C104A0DA21337F3E00F25A84 /* Enum.swift in Sources */,
