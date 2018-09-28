@@ -45,7 +45,7 @@ class MusicMenuVC: UIViewController {
     
     @objc func sleepTimePressed(_ sender: UITapGestureRecognizer) {
         selectedSubCategory = Enum().MUSIC_SLEEP_TIME
-        performSegue(withIdentifier: "MusicCategoryListVC", sender: nil)
+        performSegue(withIdentifier: "MusicPlayerVC", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -53,6 +53,8 @@ class MusicMenuVC: UIViewController {
             destination.selectedMainCategory = selectedMainCategory
             destination.selectedSubCategory = selectedSubCategory
         }
-        
+        if let destination = segue.destination as? MusicPlayerVC {
+            destination.selectedSubCategory = selectedSubCategory
+        }
     }
 }
