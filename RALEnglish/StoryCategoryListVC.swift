@@ -33,18 +33,16 @@ class StoryCategoryListVC: UIViewController, UITableViewDelegate, UITableViewDat
     var cellHeights: [CGFloat] = []
     var openCellIndex: Int!
     var openCell: StoryCategoryListCell!
-//    var cellIsCollapsed: Bool = true
-//    var urls = [String]()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.title = ""
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
-//        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 120, right: 0)
-        
-//        tableView.estimatedRowHeight = tableView.rowHeight
-//        tableView.rowHeight = UITableViewAutomaticDimension
 
         downloadCateogyList()
     }
@@ -59,9 +57,17 @@ class StoryCategoryListVC: UIViewController, UITableViewDelegate, UITableViewDat
                         let data = snapShot[i].value as! Dictionary<String, Any>
                         let content = StoryContent(contentID: contentID, contentData: data)
                         self.contentList.append(content)
+                    }
+                    self.contentList = self.reorderContentlist()
+                    
+                    print("The palyerModels array is: ")
+                    for i in 0..<self.contentList.count {
+                        let content = self.contentList[i]
                         let model = DFPlayerModel()
-                        model.audioId = UInt(NSInteger(content.contentID))
+                        model.audioId = UInt(NSInteger(i))
+                        print(model.audioId)
                         model.audioUrl = NSURL(string: content.contentURL) as! URL
+                        print(model.audioUrl)
                         self.playerModels.append(model)
                     }
                     self.cellHeights = Array(repeating: C.CellHeight.close, count: self.contentList.count)
@@ -72,6 +78,11 @@ class StoryCategoryListVC: UIViewController, UITableViewDelegate, UITableViewDat
             })
         }
         
+    }
+    
+    func reorderContentlist() -> [StoryContent] {
+        let newContentlist = self.contentList.sorted(by: {$0.title.lowercased() < $1.title.lowercased()})
+        return newContentlist
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -155,8 +166,12 @@ class StoryCategoryListVC: UIViewController, UITableViewDelegate, UITableViewDat
         if let indexPath = tableView.indexPathForView(button) {
             print("Button tapped at indexPath \(indexPath)")
             selectedContent = contentList[indexPath.row]
+            print(selectedContent.title)
             selectedContentID = indexPath.row
+            print(selectedContentID)
             selectedPlayerModel = playerModels[indexPath.row]
+            print(selectedPlayerModel.audioId)
+            print(selectedPlayerModel.audioUrl)
             performSegue(withIdentifier: "StoryPlayerVC", sender: nil)
         }
         else {

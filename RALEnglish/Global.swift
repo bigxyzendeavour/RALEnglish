@@ -10,7 +10,6 @@ import UIKit
 import NVActivityIndicatorView
 
 let activityData = ActivityData()
-let THEME_COLOR = UIColor(red: 121.0/255.0, green: 83.0/255.0, blue: 210.0/255.0, alpha: 1)
 var isRefreshing = false
 
 extension UIView {
@@ -29,8 +28,6 @@ extension UIView {
 extension UIViewController {
     func startRefreshing() {
         isRefreshing = true
-        NVActivityIndicatorView.DEFAULT_COLOR = THEME_COLOR
-        NVActivityIndicatorView.DEFAULT_TEXT_COLOR = THEME_COLOR
         NVActivityIndicatorView.DEFAULT_BLOCKER_MESSAGE = "Loading"
         NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
     }

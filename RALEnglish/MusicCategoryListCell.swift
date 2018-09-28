@@ -10,6 +10,7 @@ import UIKit
 
 class MusicCategoryListCell: UITableViewCell {
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var musicTitleLabel: UILabel!
 
     override func awakeFromNib() {
@@ -18,6 +19,7 @@ class MusicCategoryListCell: UITableViewCell {
     }
 
     func configureCell(content: MusicContent) {
+        containerView.heightCircleView(radius: 10)
         musicTitleLabel.text = "\(content.contentID + 1). \(content.title)"
     }
 

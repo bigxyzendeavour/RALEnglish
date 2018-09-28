@@ -117,33 +117,43 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
         dfplayer.df_reloadData()
         
         dfplayerControlManager = DFPlayerControlManager.shareInstance()
-        dfplayerControlManager.df_slider(withFrame: sliderView.frame, minimumTrackTintColor: .cyan, maximumTrackTintColor: .brown, trackHeight: 15, thumbSize: CGSize(width: 26, height: 26), superView: self.view)
-        dfplayerControlManager.df_currentTimeLabel(withFrame: CGRect(x: startTimeLabel.frame.origin.x, y: startTimeLabel.frame.origin.y, width: startTimeLabel.frame.width, height: startTimeLabel.frame.height), superView: self.view)
-        dfplayerControlManager.df_totalTimeLabel(withFrame: CGRect(x: endTimeLabel.frame.origin.x, y: endTimeLabel.frame.origin.y, width: endTimeLabel.frame.width, height: endTimeLabel.frame.height), superView: self.view)
+        
+        let viewFrameWidth = self.view.frame.width
+        dfplayerControlManager.df_slider(withFrame: CGRect(x: 16, y: self.view.frame.size.height - 151, width: viewFrameWidth - 32, height: sliderView.frame.height), minimumTrackTintColor: .white, maximumTrackTintColor: .white, trackHeight: 15, thumbSize: CGSize(width: 26, height: 26), superView: self.view)
+        dfplayerControlManager.df_currentTimeLabel(withFrame: CGRect(x: startTimeLabel.frame.origin.x, y: self.view.frame.maxY - 113, width: startTimeLabel.frame.width, height: startTimeLabel.frame.height), superView: self.view)
+        dfplayerControlManager.df_totalTimeLabel(withFrame: CGRect(x: viewFrameWidth - 76, y: self.view.frame.maxY - 113, width: endTimeLabel.frame.width, height: endTimeLabel.frame.height), superView: self.view)
+        
         
         let imageWidth = playPauseButton.frame.size.height - 20
+        
         dfplayerControlManager.df_playPauseBtn(withFrame: CGRect(x: playPauseButton.frame.midX - imageWidth/2, y: playPauseButton.frame.midY - imageWidth/2, width: imageWidth, height: imageWidth), superView: bottomStackView, block: {
             if self.playerState == Enum().MUSIC_PLAYER_INACTIVE {
-                self.rotateView(view: self.cdImageView, fromValue: 0.0)
+                self.addRotation()
                 self.animationIsRunning = true
                 self.playerState = Enum().MUSIC_PLAYER_ACTIVE
             } else if self.playerState == Enum().MUSIC_PLAYER_ACTIVE {
                 if self.animationIsRunning == true {
+                    print("Grandon: Playing")
                     self.pauseLayer(layer: self.cdImageView.layer)
                     self.animationIsRunning = false
                 } else {
-                    self.resumeLayer(layer: self.cdImageView.layer)
+                    print("Grandon: Paused)")
+                    self.resumePlayer(layer: self.cdImageView.layer)
                     self.animationIsRunning = true
                 }
-            } else {
-                self.stopAnimationForView(self.cdImageView)
-                self.playerState = Enum().MUSIC_PLAYER_INACTIVE
-                self.animationIsRunning = false
             }
+//            else {
+//                //Stopped
+//                self.stopAnimationForView(self.cdImageView)
+//                self.playerState = Enum().MUSIC_PLAYER_INACTIVE
+//                self.animationIsRunning = false
+//            }
         })
-        dfplayerControlManager.df_typeControlBtn(withFrame: CGRect(x: playerModeOptionButton.frame.minX, y: playerModeOptionButton.frame.minY, width: playerModeOptionButton.frame.size.width, height: playerModeOptionButton.frame.size.height), superView: backgroupView, block: nil)
         
-        dfplayerControlManager.df_nextAudioBtn(withFrame: CGRect(x: nextButton.frame.midX - imageWidth/2, y: nextButton.frame.midY - imageWidth/2, width: imageWidth, height: imageWidth), superView: bottomStackView, block: {
+        dfplayerControlManager.df_typeControlBtn(withFrame: CGRect(x: viewFrameWidth - 65, y: 110, width: playerModeOptionButton.frame.size.width, height: playerModeOptionButton.frame.size.height), superView: backgroupView, block: nil)
+        
+        let nextBtnMidX = viewFrameWidth * (7/8)
+        dfplayerControlManager.df_nextAudioBtn(withFrame: CGRect(x: nextBtnMidX - imageWidth/2, y: nextButton.frame.midY - imageWidth/2, width: imageWidth, height: imageWidth), superView: bottomStackView, block: {
             self.dfplayer.df_audioStop()
             self.cdImageView.stopAnimating()
             self.currentContentID = self.currentContentID + 1
@@ -152,18 +162,36 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
                 self.sendAlertWithoutHandler(alertTitle: "It's the last of the list", alertMessage: "", actionTitle: ["OK"])
             } else {
                 self.updateTitle()
-                self.rotateView(view: self.cdImageView, fromValue: 0.0)
+                
+                if self.playerState == Enum().MUSIC_PLAYER_ACTIVE {
+                    if self.animationIsRunning == true {
+                        //Playing
+                        self.addRotation()
+                    } else {
+                        //Paused
+                        self.restartPlayer(layer: self.cdImageView.layer)
+                        self.addRotation()
+                    }
+                } else if self.playerState == Enum().MUSIC_PLAYER_INACTIVE {
+                    self.addRotation()
+                    
+                }
+                self.playerState = Enum().MUSIC_PLAYER_ACTIVE
+                self.animationIsRunning = true
             }
         })
-        dfplayerControlManager.df_lastAudioBtn(withFrame: CGRect(x: previousButton.frame.midX - imageWidth/2, y: previousButton.frame.midY - imageWidth/2, width: imageWidth, height: imageWidth), superView: bottomStackView, block: {
+        
+        let previousBtnMidX = viewFrameWidth * (1/8)
+        dfplayerControlManager.df_lastAudioBtn(withFrame: CGRect(x: previousBtnMidX - imageWidth/2, y: previousButton.frame.midY - imageWidth/2, width: imageWidth, height: imageWidth), superView: bottomStackView, block: {
             self.dfplayer.df_audioStop()
             self.currentContentID = self.currentContentID - 1
             if self.currentContentID < 0 {
                 self.currentContentID = self.currentContentID + 1
                 self.sendAlertWithoutHandler(alertTitle: "It's the beginning of the list", alertMessage: "", actionTitle: ["OK"])
             } else {
+                self.animationIsRunning = true
                 self.updateTitle()
-                self.rotateView(view: self.cdImageView, fromValue: 0.0)
+                self.addRotation()
             }
         })
         
@@ -186,7 +214,7 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
         let imageWidth = sleepTimePlayButton.frame.size.height
         dfplayerControlManager.df_playPauseBtn(withFrame: CGRect(x: sleepTimePlayButton.frame.midX - imageWidth/2, y: sleepTimePlayButton.frame.midY - imageWidth/2, width: imageWidth, height: imageWidth), superView: buttonBlockerLeftView, block: {
             if self.playerState == Enum().MUSIC_PLAYER_INACTIVE {
-                self.rotateView(view: self.cdImageView, fromValue: 0.0)
+                self.addRotation()
                 self.animationIsRunning = true
                 self.playerState = Enum().MUSIC_PLAYER_ACTIVE
             } else if self.playerState == Enum().MUSIC_PLAYER_ACTIVE {
@@ -194,11 +222,11 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
                     self.pauseLayer(layer: self.cdImageView.layer)
                     self.animationIsRunning = false
                 } else {
-                    self.resumeLayer(layer: self.cdImageView.layer)
+                    self.resumePlayer(layer: self.cdImageView.layer)
                     self.animationIsRunning = true
                 }
             } else {
-                self.stopAnimationForView(self.cdImageView)
+                self.stopAnimationForView()
                 self.playerState = Enum().MUSIC_PLAYER_INACTIVE
                 self.animationIsRunning = false
             }
@@ -213,7 +241,7 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
         }
         let model = playerModels[currentContentID]
         dfplayer.df_playerPlay(withAudioId: model.audioId)
-        rotateView(view: cdImageView, fromValue: 0.0)
+        addRotation()
         playerState = Enum().MUSIC_PLAYER_ACTIVE
         animationIsRunning = true
     }
@@ -225,7 +253,7 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
                 currentContentID = 0
             } else {
                 self.updateTitle()
-                self.rotateView(view: cdImageView, fromValue: 0.0)
+                self.addRotation()
             }
         }
     }
@@ -244,53 +272,56 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
         self.title = content.title
     }
     
-    func rotateView(view: UIView, fromValue: Double) {
-//        let content = contentList[id]
-//        let totalTime = content.contentLength
-        UIView.animate(withDuration: TimeInterval(9999999)) {
-            let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
-            
-            rotationAnimation.fromValue = fromValue
-            rotationAnimation.toValue = Float(M_PI * 2.0)
-            rotationAnimation.duration = TimeInterval(30)
-            rotationAnimation.repeatCount = 999999
-            
-            view.layer.add(rotationAnimation, forKey: self.kRotationAnimationKey)
-        }
+    func createRotateView(fromValue: Double) -> CABasicAnimation {
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        
+        rotationAnimation.fromValue = fromValue
+        rotationAnimation.toValue = Float(M_PI * 2.0)
+        rotationAnimation.duration = TimeInterval(30)
+        rotationAnimation.repeatCount = 999999
+        return rotationAnimation
     }
     
-    func stopAnimationForView(_ myView: UIView) {
+    func addRotation() {
+//        UIView.animate(withDuration: TimeInterval(9999999)) { 
+//            self.cdImageView.layer.add(self.createRotateView(fromValue: 0.0), forKey: self.kRotationAnimationKey)
+//        }
+        self.cdImageView.layer.add(self.createRotateView(fromValue: 0.0), forKey: self.kRotationAnimationKey)
+    }
+    
+    func stopAnimationForView() {
         
-        //Get the current transform from the layer's presentation layer
-        //(The presentation layer has the state of the "in flight" animation)
-//        let transform = myView.layer.presentation()?.transform
-        
-        //Set the layer's transform to the current state of the transform
-        //from the "in-flight" animation
-//        myView.layer.transform = transform!
-        
-        //Now remove the animation
-        //and the view's layer will keep the current rotation
-        myView.layer.removeAllAnimations()
+        self.cdImageView.layer.removeAllAnimations()
+//        rotateView(view: myView, fromValue: 0.0)
     }
     
     func stopAnimation(layer: CALayer) {
         layer.speed = 0.0
         layer.timeOffset = CFTimeInterval(0)
+        
     }
     
     func pauseLayer(layer: CALayer) {
         let pausedTime: CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil)
+        print("Grandon: the pausedTime when trying to pause is \(pausedTime)")
         layer.speed = 0.0
         layer.timeOffset = pausedTime
     }
     
-    func resumeLayer(layer: CALayer) {
+    func restartPlayer(layer: CALayer) {
+        layer.timeOffset = CFTimeInterval(0)
+        layer.speed = 1.0
+        layer.beginTime = 0.0
+    }
+    
+    func resumePlayer(layer: CALayer) {
         let pausedTime: CFTimeInterval = layer.timeOffset
+        print("Grandon: the pausedTime when trying to resume is \(pausedTime)")
         layer.speed = 1.0
         layer.timeOffset = 0.0
         layer.beginTime = 0.0
         let timeSincePause: CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
+        print("Grandon: the timeSincePause is \(timeSincePause)")
         layer.beginTime = timeSincePause
     }
     
@@ -298,8 +329,7 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
         dfplayer.df_audioStop()
         playerState = Enum().MUSIC_PLAYER_INACTIVE
         animationIsRunning = false
-//        stopAnimationForView(cdImageView)
-        stopAnimation(layer: self.cdImageView.layer)
+        stopAnimationForView()
     }
     
 }

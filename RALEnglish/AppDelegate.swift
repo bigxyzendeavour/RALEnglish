@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         startView.configYFStartView()
         
-        
+        UIApplication.shared.isIdleTimerDisabled = true
         
         return true
     }
