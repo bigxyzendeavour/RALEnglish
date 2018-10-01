@@ -102,7 +102,7 @@ NSString * const DFPlaybackLikelyToKeepUpKey    = @"playbackLikelyToKeepUp";
     
     self.isOthetPlaying = [AVAudioSession sharedInstance].otherAudioPlaying;
     
-    NSInteger user_playerMode = [[NSUserDefaults standardUserDefaults] integerForKey:DFPlayerModeKey];
+//    NSInteger user_playerMode = [[NSUserDefaults standardUserDefaults] integerForKey:DFPlayerModeKey];
     self.playMode = DFPlayerModeOrderCycle;
     self.state = DFPlayerStateStopped;
     self.isObserveProgress          = YES;

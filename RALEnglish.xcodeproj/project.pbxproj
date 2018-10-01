@@ -16,8 +16,6 @@
 		C104A0DE213504B000F25A84 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = C104A0DD213504B000F25A84 /* Content.swift */; };
 		C104A0E021350AC900F25A84 /* MusicContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C104A0DF21350AC900F25A84 /* MusicContent.swift */; };
 		C104A0E22135104A00F25A84 /* MusicCategoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C104A0E12135104A00F25A84 /* MusicCategoryListCell.swift */; };
-		C1A1C44A2129091C00172D6D /* TransitionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1C4492129091C00172D6D /* TransitionMode.swift */; };
-		C1A1C44C2129092200172D6D /* BubbleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1C44B2129092200172D6D /* BubbleTransition.swift */; };
 		C1A5DE6C211935D100A73FD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5DE6B211935D100A73FD4 /* AppDelegate.swift */; };
 		C1A5DE6E211935D100A73FD4 /* MusicPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5DE6D211935D100A73FD4 /* MusicPlayerVC.swift */; };
 		C1A5DE71211935D100A73FD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1A5DE6F211935D100A73FD4 /* Main.storyboard */; };
@@ -49,8 +47,6 @@
 		C104A0DD213504B000F25A84 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		C104A0DF21350AC900F25A84 /* MusicContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicContent.swift; sourceTree = "<group>"; };
 		C104A0E12135104A00F25A84 /* MusicCategoryListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicCategoryListCell.swift; sourceTree = "<group>"; };
-		C1A1C4492129091C00172D6D /* TransitionMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransitionMode.swift; path = "../../../../../Downloads/iOS-Bubble-Transition-master/TransitionMode.swift"; sourceTree = "<group>"; };
-		C1A1C44B2129092200172D6D /* BubbleTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BubbleTransition.swift; path = "../../../../../Downloads/iOS-Bubble-Transition-master/BubbleTransition.swift"; sourceTree = "<group>"; };
 		C1A5DE68211935D100A73FD4 /* RALEnglish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RALEnglish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A5DE6B211935D100A73FD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1A5DE6D211935D100A73FD4 /* MusicPlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerVC.swift; sourceTree = "<group>"; };
@@ -181,8 +177,6 @@
 			children = (
 				C1A5DE882119394A00A73FD4 /* DataService.swift */,
 				C1A5DE8A2119395900A73FD4 /* Global.swift */,
-				C1A1C4492129091C00172D6D /* TransitionMode.swift */,
-				C1A1C44B2129092200172D6D /* BubbleTransition.swift */,
 				C104A0D921337F3E00F25A84 /* Enum.swift */,
 			);
 			name = Global;
@@ -227,13 +221,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Grandon Lin";
 				TargetAttributes = {
 					C1A5DE67211935D100A73FD4 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = UM5SX26C6N;
-						LastSwiftMigration = 0820;
+						DevelopmentTeam = Y7SMXYWZ8T;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -325,11 +319,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1A1C44C2129092200172D6D /* BubbleTransition.swift in Sources */,
 				C1A5DE8B2119395900A73FD4 /* Global.swift in Sources */,
 				C104A0D8213252BF00F25A84 /* MusicCategoryListVC.swift in Sources */,
 				C1A5DE9121193B5200A73FD4 /* StoryPlayerVC.swift in Sources */,
-				C1A1C44A2129091C00172D6D /* TransitionMode.swift in Sources */,
 				C104A0E22135104A00F25A84 /* MusicCategoryListCell.swift in Sources */,
 				C1A5DE892119394A00A73FD4 /* DataService.swift in Sources */,
 				C1D11A61215744CB0010F634 /* MusicMenuVC.swift in Sources */,
@@ -379,15 +371,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -428,15 +428,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -467,7 +475,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = UM5SX26C6N;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = Y7SMXYWZ8T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
@@ -486,11 +495,12 @@
 				INFOPLIST_FILE = RALEnglish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.RALEnglish;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bigxyz.B4English;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RALEnglish/RALEnglish-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/\"/**";
 				WARNING_CFLAGS = "";
 			};
@@ -502,7 +512,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = UM5SX26C6N;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = Y7SMXYWZ8T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
@@ -521,10 +532,11 @@
 				INFOPLIST_FILE = RALEnglish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.RALEnglish;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bigxyz.B4English;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RALEnglish/RALEnglish-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/\"/**";
 				WARNING_CFLAGS = "";
 			};

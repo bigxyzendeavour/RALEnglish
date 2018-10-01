@@ -42,7 +42,7 @@ class MusicCategoryListVC: UIViewController, UITableViewDelegate, UITableViewDat
                         self.contentList.append(content)
                         let model = DFPlayerModel()
                         model.audioId = UInt(NSInteger(content.contentID))
-                        model.audioUrl = NSURL(string: content.contentURL) as! URL
+                        model.audioUrl = NSURL(string: content.contentURL)! as URL
                         self.playerModels.append(model)
                     }
                     self.tableView.reloadData()

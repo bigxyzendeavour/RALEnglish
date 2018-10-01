@@ -38,7 +38,7 @@ class StoryCategoryListCell: FoldingCell {
         if content.contentDisplayURL != "" {
             Storage.storage().reference(forURL: content.contentDisplayURL).getData(maxSize: 1024 * 1024, completion: { (data, error) in
                 if error != nil {
-                    print("\(error?.localizedDescription)")
+                    print("\(String(describing: error?.localizedDescription))")
                 } else {
                     let image = UIImage(data: data!)
                     self.contentDisplayImage.image = image

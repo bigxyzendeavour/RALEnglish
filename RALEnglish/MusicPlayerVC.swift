@@ -98,7 +98,7 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
                     self.contentList.append(content)
                     let model = DFPlayerModel()
                     model.audioId = UInt(NSInteger(content.contentID))
-                    model.audioUrl = NSURL(string: content.contentURL) as! URL
+                    model.audioUrl = NSURL(string: content.contentURL)! as URL
                     self.playerModels.append(model)
                 }
                 completion(self.playerModels)
@@ -119,6 +119,7 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
         dfplayerControlManager = DFPlayerControlManager.shareInstance()
         
         let viewFrameWidth = self.view.frame.width
+        dfplayerControlManager.df_bufferProgressView(withFrame: CGRect(x: 16, y: self.view.frame.size.height - 151, width: viewFrameWidth - 32, height: sliderView.frame.height), trackTintColor: .green, progressTintColor: .white, superView: self.view)
         dfplayerControlManager.df_slider(withFrame: CGRect(x: 16, y: self.view.frame.size.height - 151, width: viewFrameWidth - 32, height: sliderView.frame.height), minimumTrackTintColor: .white, maximumTrackTintColor: .white, trackHeight: 15, thumbSize: CGSize(width: 26, height: 26), superView: self.view)
         dfplayerControlManager.df_currentTimeLabel(withFrame: CGRect(x: startTimeLabel.frame.origin.x, y: self.view.frame.maxY - 113, width: startTimeLabel.frame.width, height: startTimeLabel.frame.height), superView: self.view)
         dfplayerControlManager.df_totalTimeLabel(withFrame: CGRect(x: viewFrameWidth - 76, y: self.view.frame.maxY - 113, width: endTimeLabel.frame.width, height: endTimeLabel.frame.height), superView: self.view)
@@ -142,12 +143,6 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
                     self.animationIsRunning = true
                 }
             }
-//            else {
-//                //Stopped
-//                self.stopAnimationForView(self.cdImageView)
-//                self.playerState = Enum().MUSIC_PLAYER_INACTIVE
-//                self.animationIsRunning = false
-//            }
         })
         
         dfplayerControlManager.df_typeControlBtn(withFrame: CGRect(x: viewFrameWidth - 65, y: 110, width: playerModeOptionButton.frame.size.width, height: playerModeOptionButton.frame.size.height), superView: backgroupView, block: nil)
@@ -258,6 +253,24 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
         }
     }
     
+    func df_player(_ player: DFPlayer!, didGet statusCode: DFPlayerStatusCode) {
+        if statusCode == DFPlayerStatusCode.networkUnavailable {
+            self.sendAlertWithoutHandler(alertTitle: "No Internet Connection", alertMessage: "", actionTitle: ["OK"])
+        } else if statusCode == DFPlayerStatusCode.networkViaWWAN {
+            let OKActionHandler = {(action: UIAlertAction) -> Void in
+                DFPlayer.shareInstance()?.isObserveWWAN = false
+                let model = self.playerModels[self.currentContentID]
+                DFPlayer.shareInstance()?.df_playerPlay(withAudioId: model.audioId)
+            }
+            let cancelActionHandler = {(action: UIAlertAction) -> Void in
+                return
+            }
+            self.sendAlertWithHandler(alertTitle: "Data Usage", alertMessage: "It's going to cost your data", actionTitle: ["OK", "Cancel"], handlers: [OKActionHandler, cancelActionHandler])
+        } else if statusCode == DFPlayerStatusCode.requestTimeOut {
+            self.sendAlertWithoutHandler(alertTitle: "Request Time Out", alertMessage: "", actionTitle: ["OK"])
+        }
+    }
+    
     func df_playerModelArray() -> [DFPlayerModel]! {
         return playerModels
     }
@@ -276,7 +289,7 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
         let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
         
         rotationAnimation.fromValue = fromValue
-        rotationAnimation.toValue = Float(M_PI * 2.0)
+        rotationAnimation.toValue = Double.pi * 2
         rotationAnimation.duration = TimeInterval(30)
         rotationAnimation.repeatCount = 999999
         return rotationAnimation

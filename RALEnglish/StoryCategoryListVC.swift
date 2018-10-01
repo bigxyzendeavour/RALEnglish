@@ -66,7 +66,7 @@ class StoryCategoryListVC: UIViewController, UITableViewDelegate, UITableViewDat
                         let model = DFPlayerModel()
                         model.audioId = UInt(NSInteger(i))
                         print(model.audioId)
-                        model.audioUrl = NSURL(string: content.contentURL) as! URL
+                        model.audioUrl = NSURL(string: content.contentURL)! as URL
                         print(model.audioUrl)
                         self.playerModels.append(model)
                     }
@@ -131,7 +131,7 @@ class StoryCategoryListVC: UIViewController, UITableViewDelegate, UITableViewDat
             duration = 0.8
         }
         
-        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { _ in
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { 
             tableView.beginUpdates()
             tableView.endUpdates()
         }, completion: nil)

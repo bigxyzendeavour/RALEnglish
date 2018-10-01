@@ -155,7 +155,7 @@ NSString * const DFTotalTimeKey      = @"totalTime";
     [[DFPlayer shareInstance] addObserver:self forKeyPath:DFStateKey options:NSKeyValueObservingOptionNew context:nil];
     self.playBtn.handleJFEventBlock = ^(UIButton *sender) {
         if ([DFPlayer shareInstance].state == DFPlayerStateStopped) {
-            [DFPlayer shareInstance].df_audioPlay;
+            [[DFPlayer shareInstance] df_audioPlay];
             if (block) {
                 block();
             }
@@ -368,7 +368,7 @@ NSString * const DFTotalTimeKey      = @"totalTime";
     int seconds = currentTime % 60;
     int minutes = (currentTime / 60) % 60;
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.currentTimeLabel.text = [NSString stringWithFormat:@"%02zd:%02zd",minutes,seconds];
+        self.currentTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d",minutes,seconds];
     });
 }
 
@@ -440,7 +440,7 @@ NSString * const DFTotalTimeKey      = @"totalTime";
     int seconds = time % 60;
     int minutes = (time / 60) % 60;
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.currentTimeLabel.text = [NSString stringWithFormat:@"%02zd:%02zd",minutes,seconds];
+        self.currentTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d",minutes,seconds];
     });
 }
 
@@ -449,7 +449,7 @@ NSString * const DFTotalTimeKey      = @"totalTime";
     int seconds = time % 60;
     int minutes = (time / 60) % 60;
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.totalTimeLabel.text = [NSString stringWithFormat:@"%02zd:%02zd",minutes,seconds];
+        self.totalTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d",minutes,seconds];
     });
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{

@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import Firebase
 
-class StoryPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate, DFPlayerDataSource {
+@objcMembers class StoryPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate, DFPlayerDataSource {
 
     @IBOutlet weak var containerView: UIScrollView!
     @IBOutlet weak var sliderView: UIView!
@@ -65,22 +65,18 @@ class StoryPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate, 
     
     func initializeUI() {
         let fontColor = UIColor(red: 0.0, green: 96.0 / 255.0, blue: 202.0 / 255.0, alpha: 1)
-        lyricTableView = dfplayerControlManager?.df_lyricTableView(withFrame: CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)!, width: self.view.frame.width, height: containerView.frame.height), contentInset: UIEdgeInsetsMake(0, 0, 120, 0), cellRowHeight: 60, cellBackgroundColor: UIColor.clear, currentLineLrcForegroundTextColor: nil, currentLineLrcBackgroundTextColor: fontColor, otherLineLrcBackgroundTextColor: .white, currentLineLrcFont: UIFont.init(name: "Arial", size: 19)!, otherLineLrcFont: UIFont(name: "Arial", size: 19)!, superView: containerView, click: {(IndexPath) -> Void in
+        lyricTableView = dfplayerControlManager?.df_lyricTableView(withFrame: CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)!, width: self.view.frame.width, height: containerView.frame.height), contentInset: UIEdgeInsets.init(top: 0, left: 0, bottom: 120, right: 0), cellRowHeight: 60, cellBackgroundColor: UIColor.clear, currentLineLrcForegroundTextColor: nil, currentLineLrcBackgroundTextColor: fontColor, otherLineLrcBackgroundTextColor: .white, currentLineLrcFont: UIFont.init(name: "Arial", size: 19)!, otherLineLrcFont: UIFont(name: "Arial", size: 19)!, superView: containerView, click: {(IndexPath) -> Void in
         })
         
         containerView.addSubview(lyricTableView!)
     }
     
     func df_playerModelArray() -> [DFPlayerModel]! {
-        for model in playerModels {
-            print(model.audioId)
-        }
         return playerModels
     }
     
     func df_playerAudioInfoModel(_ player: DFPlayer!) -> DFPlayerInfoModel! {
         let infoModel = DFPlayerInfoModel()
-        print(dfplayer.currentAudioModel.audioId)
         if let content = contentList[Int(dfplayer.currentAudioModel.audioId)] as? StoryContent {
             infoModel.audioLyric = content.lyric
         }
@@ -96,7 +92,7 @@ class StoryPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate, 
         dfplayer.category = DFPlayerAudioSessionCategory.playback
         dfplayer.isObserveWWAN = true
         
-//        dfplayer.df_reloadData()
+        dfplayer.df_reloadData()
         
         dfplayerControlManager = DFPlayerControlManager.shareInstance()
         
@@ -126,11 +122,31 @@ class StoryPlayerVC: UIViewController, AVAudioPlayerDelegate, DFPlayerDelegate, 
             }
         })
         let sliderWidth = viewFrameWidth - 32
+        dfplayerControlManager.df_bufferProgressView(withFrame: CGRect(x: 16, y: self.view.frame.size.height - 151, width: viewFrameWidth - 32, height: sliderView.frame.height), trackTintColor: .green, progressTintColor: .white, superView: self.view)
         dfplayerControlManager.df_slider(withFrame: CGRect(x: 16, y: self.view.frame.size.height - 151, width: sliderWidth, height: sliderView.frame.height), minimumTrackTintColor: .white, maximumTrackTintColor: .white, trackHeight: 15, thumbSize: CGSize(width: 26, height: 26), superView: self.view)
         dfplayerControlManager.df_currentTimeLabel(withFrame: CGRect(x: 8 , y: self.view.frame.maxY - 113, width: startTimeLabel.frame.width, height: startTimeLabel.frame.height), superView: self.view)
         dfplayerControlManager.df_totalTimeLabel(withFrame: CGRect(x: self.view.frame.maxX - 63, y: self.view.frame.maxY - 113, width: endTimeLabel.frame.width, height: endTimeLabel.frame.height), superView: self.view)
         
         dfplayer.df_setPlayerWithPreviousAudioModel()
+    }
+    
+    func df_player(_ player: DFPlayer!, didGet statusCode: DFPlayerStatusCode) {
+        if statusCode == DFPlayerStatusCode.networkUnavailable {
+            self.sendAlertWithoutHandler(alertTitle: "No Internet Connection", alertMessage: "", actionTitle: ["OK"])
+        } else if statusCode == DFPlayerStatusCode.networkViaWWAN {
+            let OKActionHandler = {(action: UIAlertAction) -> Void in
+                DFPlayer.shareInstance()?.isObserveWWAN = false
+                DFPlayer.shareInstance()?.df_playerPlay(withAudioId: self.dfplayer.currentAudioModel.audioId)
+            }
+            let cancelActionHandler = {(action: UIAlertAction) -> Void in
+                return
+            }
+            self.sendAlertWithHandler(alertTitle: "Data Usage", alertMessage: "It's going to cost your data", actionTitle: ["OK", "Cancel"], handlers: [OKActionHandler, cancelActionHandler])
+        } else if statusCode == DFPlayerStatusCode.requestTimeOut {
+            self.sendAlertWithoutHandler(alertTitle: "Request Time Out", alertMessage: "", actionTitle: ["OK"])
+        } else if statusCode == DFPlayerStatusCode.cacheSuccess {
+            self.lyricTableView.reloadData()
+        }
     }
     
     func df_playerDidPlay(toEndTime player: DFPlayer!) {
