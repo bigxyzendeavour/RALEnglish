@@ -50,8 +50,11 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
         
         cdImageView.heightCircleView()
         customizeUI()
-//        setupViewAnimator()
         
+        initialize()
+    }
+    
+    func initialize() {
         if selectedSubCategory == Enum().MUSIC_SLEEP_TIME {
             self.initSleepTimePlayer()
             downloadSleepMusic { (playerModelsResult) in
@@ -228,6 +231,17 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
         })
         dfplayer.df_setPlayerWithPreviousAudioModel()
     }
+    
+    func df_playerAudioInfoModel(_ player: DFPlayer!) -> DFPlayerInfoModel! {
+        let infoModel = DFPlayerInfoModel()
+        let content = contentList[Int(dfplayer.currentAudioModel.audioId)]
+        infoModel.audioLyric = ""
+        infoModel.audioAlbum = selectedSubCategory
+        infoModel.audioName = content.title
+        infoModel.audioSinger = ""
+        infoModel.audioImage = UIImage()
+        return infoModel;
+    }
 
     func playStory() {
         dfplayer.df_reloadData()
@@ -275,11 +289,6 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
         return playerModels
     }
     
-    func df_playerAudioInfoModel(_ player: DFPlayer!) -> DFPlayerInfoModel! {
-        let infoModel = DFPlayerInfoModel()
-        return infoModel;
-    }
-    
     func updateTitle() {
         let content = contentList[Int(dfplayer.currentAudioModel.audioId)]
         self.title = content.title
@@ -303,15 +312,12 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
     }
     
     func stopAnimationForView() {
-        
         self.cdImageView.layer.removeAllAnimations()
-//        rotateView(view: myView, fromValue: 0.0)
     }
     
     func stopAnimation(layer: CALayer) {
         layer.speed = 0.0
         layer.timeOffset = CFTimeInterval(0)
-        
     }
     
     func pauseLayer(layer: CALayer) {
@@ -329,12 +335,10 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
     
     func resumePlayer(layer: CALayer) {
         let pausedTime: CFTimeInterval = layer.timeOffset
-        print("Grandon: the pausedTime when trying to resume is \(pausedTime)")
         layer.speed = 1.0
         layer.timeOffset = 0.0
         layer.beginTime = 0.0
         let timeSincePause: CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
-        print("Grandon: the timeSincePause is \(timeSincePause)")
         layer.beginTime = timeSincePause
     }
     
@@ -344,6 +348,5 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
         animationIsRunning = false
         stopAnimationForView()
     }
-    
 }
 

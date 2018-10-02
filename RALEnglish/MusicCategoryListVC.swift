@@ -40,17 +40,28 @@ class MusicCategoryListVC: UIViewController, UITableViewDelegate, UITableViewDat
                         let data = snapShot[i].value as! Dictionary<String, Any>
                         let content = MusicContent(contentID: contentID, contentData: data)
                         self.contentList.append(content)
+                    }
+                    self.contentList = self.reorderContentlist()
+                    
+                    for i in 0..<self.contentList.count {
+                        let content = self.contentList[i]
                         let model = DFPlayerModel()
-                        model.audioId = UInt(NSInteger(content.contentID))
+                        model.audioId = UInt(NSInteger(i))
                         model.audioUrl = NSURL(string: content.contentURL)! as URL
                         self.playerModels.append(model)
                     }
+                    
                     self.tableView.reloadData()
                     self.endRefrenshing()
                 }
             })
         }
         
+    }
+    
+    func reorderContentlist() -> [MusicContent] {
+        let newContentlist = self.contentList.sorted(by: {$0.title.lowercased() < $1.title.lowercased()})
+        return newContentlist
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

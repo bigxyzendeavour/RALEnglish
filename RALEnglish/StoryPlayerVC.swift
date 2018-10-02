@@ -65,7 +65,8 @@ import Firebase
     
     func initializeUI() {
         let fontColor = UIColor(red: 0.0, green: 96.0 / 255.0, blue: 202.0 / 255.0, alpha: 1)
-        lyricTableView = dfplayerControlManager?.df_lyricTableView(withFrame: CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)!, width: self.view.frame.width, height: containerView.frame.height), contentInset: UIEdgeInsets.init(top: 0, left: 0, bottom: 120, right: 0), cellRowHeight: 60, cellBackgroundColor: UIColor.clear, currentLineLrcForegroundTextColor: nil, currentLineLrcBackgroundTextColor: fontColor, otherLineLrcBackgroundTextColor: .white, currentLineLrcFont: UIFont.init(name: "Arial", size: 19)!, otherLineLrcFont: UIFont(name: "Arial", size: 19)!, superView: containerView, click: {(IndexPath) -> Void in
+        let containerViewHeight = self.view.frame.height - 165
+        lyricTableView = dfplayerControlManager?.df_lyricTableView(withFrame: CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)!, width: self.view.frame.width, height: containerViewHeight), contentInset: UIEdgeInsets.init(top: 0, left: 0, bottom: 160, right: 0), cellRowHeight: 60, cellBackgroundColor: UIColor.clear, currentLineLrcForegroundTextColor: nil, currentLineLrcBackgroundTextColor: fontColor, otherLineLrcBackgroundTextColor: .white, currentLineLrcFont: UIFont.init(name: "Arial", size: 19)!, otherLineLrcFont: UIFont(name: "Arial", size: 19)!, superView: containerView, click: {(IndexPath) -> Void in
         })
         
         containerView.addSubview(lyricTableView!)
@@ -79,6 +80,17 @@ import Firebase
         let infoModel = DFPlayerInfoModel()
         if let content = contentList[Int(dfplayer.currentAudioModel.audioId)] as? StoryContent {
             infoModel.audioLyric = content.lyric
+            infoModel.audioAlbum = selectedMainCategory
+            infoModel.audioName = content.title
+            infoModel.audioSinger = ""
+            Storage.storage().reference(forURL: content.contentDisplayURL).getData(maxSize: 1024 * 1024) { (data, error) in
+                if error != nil {
+                    print("\(String(describing: error?.localizedDescription))")
+                } else {
+                    let image = UIImage(data: data!)
+                    infoModel.audioImage = image
+                }
+            }
         }
         
         return infoModel;
@@ -91,6 +103,7 @@ import Firebase
         dfplayer.dataSource = self
         dfplayer.category = DFPlayerAudioSessionCategory.playback
         dfplayer.isObserveWWAN = true
+        dfplayer.isRemoteControl = true
         
         dfplayer.df_reloadData()
         

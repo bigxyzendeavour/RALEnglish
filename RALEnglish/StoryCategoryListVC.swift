@@ -18,7 +18,7 @@ fileprivate struct C {
     }
 }
 
-class StoryCategoryListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, StoryCategoryListCellDlegate {
+@objcMembers class StoryCategoryListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, StoryCategoryListCellDlegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -60,14 +60,11 @@ class StoryCategoryListVC: UIViewController, UITableViewDelegate, UITableViewDat
                     }
                     self.contentList = self.reorderContentlist()
                     
-                    print("The palyerModels array is: ")
                     for i in 0..<self.contentList.count {
                         let content = self.contentList[i]
                         let model = DFPlayerModel()
                         model.audioId = UInt(NSInteger(i))
-                        print(model.audioId)
                         model.audioUrl = NSURL(string: content.contentURL)! as URL
-                        print(model.audioUrl)
                         self.playerModels.append(model)
                     }
                     self.cellHeights = Array(repeating: C.CellHeight.close, count: self.contentList.count)

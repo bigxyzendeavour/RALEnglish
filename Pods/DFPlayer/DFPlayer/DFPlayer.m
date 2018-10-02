@@ -569,7 +569,7 @@ NSString * const DFPlaybackLikelyToKeepUpKey    = @"playbackLikelyToKeepUp";
     //监听播放进度
     if (self.isObserveProgress) {[self addPlayProgressTimeObserver];}
     //设置锁屏和控制中心音频信息
-//    [self addInformationOfLockScreen];
+    [self addInformationOfLockScreen];
     
     [self df_audioPlay];
 }

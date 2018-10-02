@@ -47,6 +47,7 @@
 		C104A0DD213504B000F25A84 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		C104A0DF21350AC900F25A84 /* MusicContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicContent.swift; sourceTree = "<group>"; };
 		C104A0E12135104A00F25A84 /* MusicCategoryListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicCategoryListCell.swift; sourceTree = "<group>"; };
+		C122825D2162F51700553B33 /* RALEnglish.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RALEnglish.entitlements; sourceTree = "<group>"; };
 		C1A5DE68211935D100A73FD4 /* RALEnglish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RALEnglish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A5DE6B211935D100A73FD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1A5DE6D211935D100A73FD4 /* MusicPlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerVC.swift; sourceTree = "<group>"; };
@@ -110,6 +111,7 @@
 		C1A5DE6A211935D100A73FD4 /* RALEnglish */ = {
 			isa = PBXGroup;
 			children = (
+				C122825D2162F51700553B33 /* RALEnglish.entitlements */,
 				C104A0E32135700500F25A84 /* Archive */,
 				C1A5DE872119393800A73FD4 /* Global */,
 				C1A5DE862119393300A73FD4 /* Model */,
@@ -229,6 +231,14 @@
 						DevelopmentTeam = Y7SMXYWZ8T;
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -500,7 +510,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "RALEnglish/RALEnglish-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/\"/**";
 				WARNING_CFLAGS = "";
 			};
@@ -536,7 +546,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RALEnglish/RALEnglish-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/\"/**";
 				WARNING_CFLAGS = "";
 			};
