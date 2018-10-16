@@ -80,17 +80,17 @@ import Firebase
         let infoModel = DFPlayerInfoModel()
         if let content = contentList[Int(dfplayer.currentAudioModel.audioId)] as? StoryContent {
             infoModel.audioLyric = content.lyric
-            infoModel.audioAlbum = selectedMainCategory
-            infoModel.audioName = content.title
-            infoModel.audioSinger = ""
-            Storage.storage().reference(forURL: content.contentDisplayURL).getData(maxSize: 1024 * 1024) { (data, error) in
-                if error != nil {
-                    print("\(String(describing: error?.localizedDescription))")
-                } else {
-                    let image = UIImage(data: data!)
-                    infoModel.audioImage = image
-                }
-            }
+//            infoModel.audioAlbum = selectedMainCategory
+//            infoModel.audioName = content.title
+//            infoModel.audioSinger = ""
+//            Storage.storage().reference(forURL: content.contentDisplayURL).getData(maxSize: 1024 * 1024) { (data, error) in
+//                if error != nil {
+//                    print("\(String(describing: error?.localizedDescription))")
+//                } else {
+//                    let image = UIImage(data: data!)
+//                    infoModel.audioImage = image
+//                }
+//            }
         }
         
         return infoModel;

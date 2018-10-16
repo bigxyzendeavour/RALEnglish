@@ -49,6 +49,7 @@ fileprivate struct C {
 
     func downloadCateogyList() {
         startRefreshing()
+        
         DispatchQueue.main.async {
             DataService.ds.REF_BASE.child(self.selectedMainCategory).child(self.selectedSubCategory).observeSingleEvent(of: .value, with: { (snapshot) in
                 if let snapShot = snapshot.children.allObjects as? [DataSnapshot] {

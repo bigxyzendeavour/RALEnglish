@@ -234,12 +234,12 @@ class MusicPlayerVC: UIViewController, DFPlayerDelegate, DFPlayerDataSource {
     
     func df_playerAudioInfoModel(_ player: DFPlayer!) -> DFPlayerInfoModel! {
         let infoModel = DFPlayerInfoModel()
-        let content = contentList[Int(dfplayer.currentAudioModel.audioId)]
-        infoModel.audioLyric = ""
-        infoModel.audioAlbum = selectedSubCategory
-        infoModel.audioName = content.title
-        infoModel.audioSinger = ""
-        infoModel.audioImage = UIImage()
+//        let content = contentList[Int(dfplayer.currentAudioModel.audioId)]
+//        infoModel.audioLyric = ""
+//        infoModel.audioAlbum = selectedSubCategory
+//        infoModel.audioName = content.title
+//        infoModel.audioSinger = ""
+//        infoModel.audioImage = UIImage()
         return infoModel;
     }
 
